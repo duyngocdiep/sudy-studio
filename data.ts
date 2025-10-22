@@ -136,38 +136,40 @@ Lýnh cùng những người sống sót di cư đến Đảo Xám hoang tàn. T
     vimeoId: '1129615682',
   },
   {
-    id: 'lady-of-indochina',
+    id: 'lady-cloud',
     en: {
-      title: 'LADY OF INDOCHINA',
-      category: 'HISTORICAL DRAMA',
-      description: 'The sweeping saga of a woman\'s journey through love, war, and revolution in colonial Indochina, fighting for her family and her country\'s freedom.',
-      pitch: 'A visually stunning period piece that uses AI to recreate historical landscapes with unparalleled accuracy, telling a deeply human story against a backdrop of epic change.'
+      title: 'LADY CLOUD',
+      category: 'MUSIC VISUAL',
+      description: 'A visual project in collaboration with Night Wonder Group, a music visual product.',
+      pitch: 'An ethereal music visual experience created in partnership with Night Wonder Group. This project blends stunning AI-generated cloudscapes with a captivating soundtrack, transporting viewers to a surreal, dreamlike realm.'
     },
     vi: {
-      title: 'LADY OF INDOCHINA',
-      category: 'PHIM CHÍNH KỊCH LỊCH SỬ',
-      description: 'Bản hùng ca sâu rộng về hành trình của một người phụ nữ qua tình yêu, chiến tranh và cách mạng ở Đông Dương thời thuộc địa, chiến đấu vì gia đình và tự do của đất nước.',
-      pitch: 'Một tác phẩm cổ trang trực quan tuyệt đẹp sử dụng AI để tái tạo các cảnh quan lịch sử với độ chính xác vô song, kể một câu chuyện sâu sắc về con người trong bối cảnh thay đổi hoành tráng.'
+      title: 'LADY CLOUD',
+      category: 'VISUAL ÂM NHẠC',
+      description: 'Một dự án visual hợp tác với tập đoàn Night Wonder, sản phẩm visual âm nhạc.',
+      pitch: 'Một trải nghiệm visual âm nhạc đầy mê hoặc, được tạo ra qua sự hợp tác với Night Wonder Group. Dự án này kết hợp những khung cảnh mây siêu thực do AI tạo ra với một bản nhạc nền cuốn hút, đưa người xem vào một thế giới như mơ.'
     },
-    thumbnailUrl: 'https://picsum.photos/seed/lady/800/600',
-    images: ['https://picsum.photos/seed/indochina1/1280/720', 'https://picsum.photos/seed/indochina2/1280/720'],
+    thumbnailUrl: 'https://i.postimg.cc/wvmYRSvX/Generated-Image-October-23-2025-3-13AM.png',
+    images: ['https://i.postimg.cc/B6xw0stJ/Generated-Image-October-23-2025-3-16AM.png'],
+    vimeoId: '1129662608',
   },
   {
-    id: 'dracula',
+    id: 'anatu-mother',
     en: {
-      title: 'CODE NAME: DRACULA',
-      category: 'NEO-NOIR THRILLER',
-      description: 'A modern reimagining of the classic tale, where "Dracula" is a shadowy bio-hacker threatening to unleash a digital plague upon the world.',
-      pitch: 'This isn\'t your ancestor\'s vampire. CODE NAME: DRACULA combines gothic horror with cyberpunk aesthetics, powered by AI-generated dreamscapes and nightmarish visuals.'
+      title: 'ANATU MOTHER',
+      category: 'LIGHTING SHOW',
+      description: 'A music and lighting show product in collaboration with Night Wonder.',
+      pitch: 'Experience ANATU MOTHER, a breathtaking fusion of music and light. This immersive lighting show, created with Night Wonder, pushes the boundaries of sensory art, creating a spectacle of color, rhythm, and emotion.'
     },
     vi: {
-      title: 'MẬT DANH: DRACULA',
-      category: 'PHIM KINH DỊ NEO-NOIR',
-      description: 'Một sự tái hiện hiện đại của câu chuyện kinh điển, trong đó "Dracula" là một hacker sinh học mờ ám đe dọa giải phóng một bệnh dịch kỹ thuật số ra thế giới.',
-      pitch: 'Đây không phải là ma cà rồng của tổ tiên bạn. MẬT DANH: DRACULA kết hợp kinh dị gothic với thẩm mỹ cyberpunk, được hỗ trợ bởi các cảnh mơ và hình ảnh ác mộng do AI tạo ra.'
+      title: 'ANATU MOTHER',
+      category: 'LIGHTING SHOW ÂM NHẠC',
+      description: 'Một sản phẩm âm nhạc lighting show kết hợp với Night Wonder.',
+      pitch: 'Trải nghiệm ANATU MOTHER, một sự kết hợp ngoạn mục giữa âm nhạc và ánh sáng. Show diễn ánh sáng sống động này, được tạo ra cùng Night Wonder, phá vỡ mọi giới hạn của nghệ thuật cảm giác, tạo nên một màn trình diễn của màu sắc, nhịp điệu và cảm xúc.'
     },
-    thumbnailUrl: 'https://picsum.photos/seed/dracula/800/600',
-    images: ['https://picsum.photos/seed/dracula1/1280/720', 'https://picsum.photos/seed/dracula2/1280/720'],
+    thumbnailUrl: 'https://i.postimg.cc/WzSVs0tt/Generated-Image-October-23-2025-3-24AM.png',
+    images: ['https://i.postimg.cc/WzSVs0tt/Generated-Image-October-23-2025-3-24AM.png'],
+    vimeoId: '1129664275',
   },
   {
     id: 'under-the-shadow-of-ashes',

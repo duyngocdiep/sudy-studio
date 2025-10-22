@@ -306,8 +306,8 @@ const ProjectsPage: React.FC<{ onPlayVideo: (vimeoId: string, title: string) => 
     );
 };
 
-const ProjectDetail: React.FC = () => {
-  const { projects, language } = useAppContext();
+const ProjectDetail: React.FC<{ onPlayVideo: (vimeoId: string, title: string) => void }> = ({ onPlayVideo }) => {
+  const { projects, language, t } = useAppContext();
   const { id } = useParams<{ id: string }>();
   const project = projects.find(p => p.id === id);
 
@@ -323,6 +323,17 @@ const ProjectDetail: React.FC = () => {
         <div className="text-center mb-12">
             <p className="text-pink-400 uppercase tracking-widest">{projectText.category}</p>
             <h1 className="text-6xl font-brand font-black my-4">{projectText.title}</h1>
+            {project.vimeoId && (
+                <button 
+                  onClick={() => onPlayVideo(project.vimeoId!, projectText.title)}
+                  className="mt-6 inline-flex items-center gap-2 px-8 py-3 bg-pink-600 text-white font-semibold rounded-md hover:bg-pink-700 transition-colors"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
+                  </svg>
+                  <span>{t('watchTrailer')}</span>
+                </button>
+              )}
         </div>
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
@@ -757,7 +768,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<Home onPlayVideo={handlePlayVideo} />} />
             <Route path="/projects" element={<ProjectsPage onPlayVideo={handlePlayVideo} />} />
-            <Route path="/project/:id" element={<ProjectDetail />} />
+            <Route path="/project/:id" element={<ProjectDetail onPlayVideo={handlePlayVideo} />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/login" element={<LoginPage />} />
