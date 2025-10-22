@@ -1,3 +1,4 @@
+
 import React, { useState, useCallback, useMemo, useRef, useEffect } from 'react';
 import { HashRouter, Routes, Route, Link, NavLink, useParams, useNavigate, Navigate, useLocation } from 'react-router-dom';
 import type { Project } from './types';
@@ -717,9 +718,10 @@ const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const { t, language, setLanguage } = useAppContext();
     return (
         <div className="bg-[#0a0a0a] text-white min-h-screen">
-            <header className="fixed top-0 left-20 right-0 h-28 flex items-center justify-center px-8 z-40 bg-gradient-to-b from-black/70 to-transparent">
-                 <Link to="/" className="flex items-center justify-center group">
-                    <img src="https://i.postimg.cc/G2b6tZvS/Generated-image-1-22.png" alt="SUDY FILM STUDIO Logo" className="h-20 group-hover:opacity-90 transition-opacity duration-300" />
+            <header className="fixed top-0 left-20 right-0 h-28 flex items-center justify-start px-8 z-40 bg-gradient-to-b from-black/70 to-transparent">
+                 <Link to="/" className="flex items-center gap-6 group">
+                    <img src="https://i.postimg.cc/65170K31/logo-white.png" alt="SUDY FILM STUDIO Logo" className="h-20 group-hover:opacity-90 transition-opacity duration-300" />
+                    <span className="text-3xl font-brand font-bold tracking-widest text-white uppercase">SUDY FILM STUDIO</span>
                  </Link>
                  <div className="absolute top-1/2 right-8 -translate-y-1/2">
                     <button onClick={() => setLanguage('en')} className={`px-3 py-1 text-sm rounded ${language === 'en' ? 'bg-pink-500 text-white' : 'bg-gray-700'}`}>EN</button>
