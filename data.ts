@@ -91,9 +91,9 @@ Kết thúc Cliffhanger: Lýnh và những người sống sót di cư đến Đ
     },
     thumbnailUrl: 'https://i.postimg.cc/htyX2BGq/Generated-Image-October-23-2025-1-50AM.png',
     images: [
-      'https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?q=80&w=871&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1620121692029-d088224ddc74?q=80&w=1032&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1617094541573-2179a61320ae?q=80&w=735&auto=format&fit=crop'
+      'https://i.postimg.cc/JnSWYpfR/EMXN1y8q-SQo-Gd-XBsb2Fk-Eg55b-GFi-LXN0d-W50LXNnc-Bova2xpbmcv-ZG93bmxv-YWQv-TWprek1UTXl-NVEk1Tl-RJd09UZ3l-Nel-U0TWp-J.png',
+      'https://i.postimg.cc/SN6pV7D6/EMXN1y8q-SQo-Gd-XBsb2Fk-Eg55b-GFi-LXN0d-W50LXNnc-Bova2xpbmcv-ZG93bmxv-YWQv-TWprek1UTXl-Nam-N6TXp-FMU56Z3d-PVEU1TWpj.png',
+      'https://i.postimg.cc/k4JVXgG6/Generated-image-1-24.png'
     ],
     vimeoId: '1129615682',
   },
