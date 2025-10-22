@@ -127,7 +127,7 @@ Giao tranh Khủng khiếp: Quân đoàn APEX đối đầu với các chiến b
 3. Kết Thúc Mở (Cliffhanger)
 Lýnh cùng những người sống sót di cư đến Đảo Xám hoang tàn. Tại bờ biển, Lýnh đối diện với Khôi – kẻ thù ngang tầm, người đã chọn đứng về phe đối lập. Khôi đang chờ đợi một cuộc chiến cuối cùng. Bí ẩn về thế lực thao túng vẫn còn đó, mở ra cánh cửa cho phần tiếp theo.`
     },
-    thumbnailUrl: 'https://i.postimg.cc/htyX2BGq/Generated-Image-October-23-2025-1-50AM.png',
+    thumbnailUrl: 'https://i.postimg.cc/bwtcd7B0/Generated-Image-October-23-2025-3-04AM.png',
     images: [
       'https://i.postimg.cc/JnSWYpfR/EMXN1y8q-SQo-Gd-XBsb2Fk-Eg55b-GFi-LXN0d-W50LXNnc-Bova2xpbmcv-ZG93bmxv-YWQv-TWprek1UTXl-NVEk1Tl-RJd09UZ3l-Nel-U0TWp-J.png',
       'https://i.postimg.cc/SN6pV7D6/EMXN1y8q-SQo-Gd-XBsb2Fk-Eg55b-GFi-LXN0d-W50LXNnc-Bova2xpbmcv-ZG93bmxv-YWQv-TWprek1UTXl-Nam-N6TXp-FMU56Z3d-PVEU1TWpj.png',
