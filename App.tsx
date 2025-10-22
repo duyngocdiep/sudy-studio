@@ -726,7 +726,7 @@ const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         <div className="bg-[#0a0a0a] text-white min-h-screen">
             <header className="fixed top-0 left-20 right-0 h-28 flex items-center justify-between px-8 z-40 bg-gradient-to-b from-black/70 to-transparent">
                  <Link to="/" className="flex items-center gap-6 group">
-                    <img src="https://i.postimg.cc/65170K31/logo-white.png" alt="SUDY FILM STUDIO Logo" className="h-20 group-hover:opacity-90 transition-opacity duration-300" />
+                    <img src="https://i.postimg.cc/65170K31/logo-white.png" alt="SUDY FILM STUDIO Logo" className="h-24 group-hover:opacity-90 transition-opacity duration-300" />
                     <span className="text-3xl font-brand font-bold tracking-widest text-white uppercase">SUDY FILM STUDIO</span>
                  </Link>
                  <div className="flex items-center gap-6">

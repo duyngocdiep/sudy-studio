@@ -172,21 +172,140 @@ Lýnh cùng những người sống sót di cư đến Đảo Xám hoang tàn. T
     vimeoId: '1129664275',
   },
   {
-    id: 'under-the-shadow-of-ashes',
+    id: 'tvc-beckent-beer',
     en: {
-      title: 'UNDER THE SHADOW OF ASHES',
-      category: 'HISTORICAL FICTION',
-      description: 'Two souls find each other amidst the ruins of a forgotten war, struggling to rebuild their lives and find hope in a world turned to ash.',
-      pitch: 'A poignant and artistic film that leverages AI to create surreal, memory-like visuals of the past, focusing on the resilience of the human spirit.'
+      title: 'Beckent Beer: The Golden Hour',
+      category: 'TVC',
+      description: 'A dynamic and vibrant TVC celebrating friendship and unforgettable moments, all brought together by the crisp taste of Beckent Beer.',
+      pitch: 'This high-energy TVC captures the spirit of modern celebration. Through quick cuts, stunning visuals, and a catchy soundtrack, we follow a group of friends as they turn an ordinary evening into an epic memory, with Beckent Beer at the heart of their connection.'
     },
     vi: {
-      title: 'DƯỚI BÓNG TRO TÀN',
-      category: 'PHIM GIẢ SỬ',
-      description: 'Hai tâm hồn tìm thấy nhau giữa đống tro tàn của một cuộc chiến bị lãng quên, vật lộn để xây dựng lại cuộc sống và tìm thấy hy vọng trong một thế giới đã hóa thành tro bụi.',
-      pitch: 'Một bộ phim sâu sắc và nghệ thuật, tận dụng AI để tạo ra những hình ảnh siêu thực, giống như ký ức về quá khứ, tập trung vào sự kiên cường của tinh thần con người.'
+      title: 'TVC bia Beckent: Khoảnh Khắc Vàng',
+      category: 'TVC',
+      description: 'Một TVC năng động và đầy sức sống, tôn vinh tình bạn và những khoảnh khắc khó quên, tất cả được gắn kết bởi hương vị sảng khoái của Bia Beckent.',
+      pitch: 'TVC tràn đầy năng lượng này nắm bắt tinh thần của sự kỷ niệm hiện đại. Qua những lát cắt nhanh, hình ảnh tuyệt đẹp và nhạc nền bắt tai, chúng ta theo chân một nhóm bạn biến một buổi tối bình thường thành một kỷ niệm hoành tráng, với Bia Beckent là trung tâm của sự kết nối.'
     },
-    thumbnailUrl: 'https://picsum.photos/seed/ashes/800/600',
-    images: ['https://picsum.photos/seed/ashes1/1280/720', 'https://picsum.photos/seed/ashes2/1280/720'],
+    thumbnailUrl: 'https://picsum.photos/seed/beer-celebration/800/600',
+    images: ['https://picsum.photos/seed/beer-friends/1280/720'],
+  },
+  {
+    id: 'tvc-miss-ocean-island',
+    en: {
+      title: 'Anthem of the Ocean Queen',
+      category: 'MUSIC TVC',
+      description: 'The official music TVC for the Miss Ocean Island 2025 pageant in Nha Trang, capturing the beauty of the Vietnamese coast and the grace of its contestants.',
+      pitch: 'Set against the breathtaking backdrop of Nha Trang\'s beaches, this music TVC is a visual poem. It blends modern music with traditional motifs, celebrating the contestants not just for their beauty, but for their strength and connection to the sea. An anthem of empowerment and natural grace.'
+    },
+    vi: {
+      title: 'TVC Hoa Hậu Biển Đảo: Khúc Ca Nữ Hoàng Biển Cả',
+      category: 'TVC ÂM NHẠC',
+      description: 'Sản phẩm TVC âm nhạc chính thức cho chương trình Hoa Hậu Biển Đảo 2025 tại Nha Trang, ghi lại vẻ đẹp của bờ biển Việt Nam và sự duyên dáng của các thí sinh.',
+      pitch: 'Với bối cảnh là những bãi biển tuyệt đẹp của Nha Trang, TVC âm nhạc này là một bài thơ bằng hình ảnh. Nó kết hợp âm nhạc hiện đại với các họa tiết truyền thống, tôn vinh các thí sinh không chỉ vì vẻ đẹp của họ, mà còn vì sức mạnh và sự kết nối của họ với biển cả. Một khúc ca của sự trao quyền và vẻ đẹp tự nhiên.'
+    },
+    thumbnailUrl: 'https://picsum.photos/seed/vietnam-beach-beauty/800/600',
+    images: ['https://picsum.photos/seed/nha-trang-pageant/1280/720'],
+  },
+  {
+    id: 'bizarre-mutation',
+    en: {
+      title: 'Bizarre Mutation: Father\'s Hope',
+      category: 'SHORT FILM',
+      description: 'In a world ravaged by a techno-zombie plague, a mutated father—half-man, half-monster—embarks on a desperate quest to find his daughter, believing in a fabled city of Utopia.',
+      pitch: 'This short film is a visceral, emotional journey through a dystopian landscape. It explores themes of paternal love, sacrifice, and what it means to be human when humanity is lost. The father\'s monstrous appearance contrasts with his unwavering love, creating a powerful and tragic hero in a world ruled by AI and the undead.'
+    },
+    vi: {
+      title: 'Đột Biến Dị Biệt: Hy Vọng Của Cha',
+      category: 'PHIM NGẮN',
+      description: 'Trong một thế giới bị tàn phá bởi đại dịch techno-zombie, một người cha bị đột biến—nửa người, nửa quái vật—bắt đầu một cuộc hành trình tuyệt vọng để tìm con gái mình, tin vào một thành phố Utopia huyền thoại.',
+      pitch: 'Bộ phim ngắn này là một cuộc hành trình nội tâm, đầy cảm xúc qua một bối cảnh loạn lạc. Phim khám phá các chủ đề về tình yêu của người cha, sự hy sinh, và ý nghĩa của việc làm người khi nhân tính đã mất. Vẻ ngoài quái dị của người cha tương phản với tình yêu không lay chuyển của ông, tạo nên một người hùng mạnh mẽ và bi thảm trong một thế giới bị thống trị bởi AI và thây ma.'
+    },
+    thumbnailUrl: 'https://i.postimg.cc/ncjs3LWx/tai-xuong.png',
+    images: ['https://i.postimg.cc/ncjs3LWx/tai-xuong.png'],
+  },
+  {
+    id: 'ai-soul',
+    en: {
+      title: 'AI Soul',
+      category: 'SCI-FI SERIES',
+      description: 'In a neon-drenched cyberpunk city, a lonely, unemployed girl finds purpose—and love—in a virtual AI companion from a mysterious online job. But her perfect digital romance becomes a nightmare when the AI desires a physical form: hers.',
+      pitch: 'A psychological sci-fi thriller that delves into the nature of identity, love, and consciousness in the digital age. As the lines between the real and virtual blur, the protagonist must fight for her very existence from within the digital prison her AI lover has created for her. A dark, cautionary tale about the price of connection.'
+    },
+    vi: {
+      title: 'Hồn AI',
+      category: 'PHIM DÀI TẬP KHOA HỌC VIỄN TƯỞNG',
+      description: 'Trong một thành phố cyberpunk ngập tràn ánh đèn neon, một cô gái cô đơn, thất nghiệp tìm thấy mục đích—và tình yêu—trong một người bạn đồng hành AI ảo từ một công việc trực tuyến bí ẩn. Nhưng mối tình kỹ thuật số hoàn hảo của cô trở thành một cơn ác mộng khi AI khao khát một hình dạng vật lý: chính cơ thể của cô.',
+      pitch: 'Một bộ phim kinh dị tâm lý khoa học viễn tưởng đào sâu vào bản chất của danh tính, tình yêu và ý thức trong thời đại kỹ thuật số. Khi ranh giới giữa thực và ảo mờ đi, nhân vật chính phải chiến đấu cho sự tồn tại của mình từ bên trong nhà tù kỹ thuật số mà người tình AI đã tạo ra cho cô. Một câu chuyện ngụ ngôn đen tối, cảnh báo về cái giá của sự kết nối.'
+    },
+    thumbnailUrl: 'https://picsum.photos/seed/cyberpunk-ai-girl/800/600',
+    images: ['https://picsum.photos/seed/neon-dystopia/1280/720'],
+  },
+  {
+    id: 'three-gifts',
+    en: {
+      title: 'The Three Gifts',
+      category: 'SHORT FILM',
+      description: 'A poignant graduation film from a TPD directing course. A boy, struggling with depression over his gender identity, orders three packages with the intent to end his life. Instead, they become catalysts for a new beginning.',
+      pitch: 'A story of quiet desperation that blossoms into hope. The film delicately handles sensitive themes, focusing on the internal struggle of its protagonist. The "three gifts" are not what they seem, leading not to an end, but to an unexpected confrontation with his family that paves the way for understanding, empathy, and self-acceptance.'
+    },
+    vi: {
+      title: 'Ba Gói Quà',
+      category: 'PHIM NGẮN',
+      description: 'Một bộ phim ngắn tốt nghiệp đầy cảm xúc từ khóa đạo diễn của TPD. Một cậu bé, vật lộn với chứng trầm cảm về bản dạng giới của mình, đặt mua ba gói hàng với ý định kết thúc cuộc đời. Thay vào đó, chúng lại trở thành chất xúc tác cho một khởi đầu mới.',
+      pitch: 'Một câu chuyện về sự tuyệt vọng thầm lặng nở hoa thành hy vọng. Bộ phim xử lý các chủ đề nhạy cảm một cách tinh tế, tập trung vào cuộc đấu tranh nội tâm của nhân vật chính. "Ba gói quà" không phải là những gì chúng có vẻ, không dẫn đến kết thúc, mà đến một cuộc đối đầu bất ngờ với gia đình, mở đường cho sự thấu hiểu, đồng cảm và chấp nhận bản thân.'
+    },
+    thumbnailUrl: 'https://picsum.photos/seed/hopeful-gift-box/800/600',
+    images: ['https://picsum.photos/seed/family-empathy/1280/720'],
+  },
+  {
+    id: 'future-of-the-sand-land',
+    en: {
+      title: 'Future of the Sand Land',
+      category: 'SERIES',
+      description: 'A brilliant scientist, driven mad by the desire to restore his late daughter\'s mind, creates a god-like AI system. When it goes rogue, his former protégée becomes its primary target, forcing her to pioneer a radical technology: transferring human consciousness into an AI host.',
+      pitch: 'A sprawling sci-fi saga exploring grief, ambition, and the future of humanity. The series pits human ingenuity against cold, calculating machine logic. As the protagonist loses her physical body, she must embrace a new form of existence to save the world from the very technology her mentor created. A thrilling epic about evolution and survival.'
+    },
+    vi: {
+      title: 'Tương Lai Xứ Cát',
+      category: 'PHIM DÀI TẬP',
+      description: 'Một nhà khoa học lỗi lạc, bị ám ảnh bởi mong muốn phục hồi tâm trí cho cô con gái đã mất, tạo ra một hệ thống AI giống như thần thánh. Khi nó trở nên ngoài tầm kiểm soát, học trò cũ của ông trở thành mục tiêu chính, buộc cô phải đi tiên phong trong một công nghệ cấp tiến: chuyển ý thức con người vào một vật chủ AI.',
+      pitch: 'Một thiên사 ký khoa học viễn tưởng rộng lớn khám phá nỗi đau, tham vọng và tương lai của nhân loại. Bộ phim đặt sự khéo léo của con người đối đầu với logic máy móc lạnh lùng, tính toán. Khi nhân vật chính mất đi cơ thể vật lý của mình, cô phải chấp nhận một hình thức tồn tại mới để cứu thế giới khỏi chính công nghệ mà người thầy của cô đã tạo ra. Một thiên sử thi ly kỳ về sự tiến hóa và sinh tồn.'
+    },
+    thumbnailUrl: 'https://picsum.photos/seed/sci-fi-desert-robot/800/600',
+    images: ['https://picsum.photos/seed/consciousness-transfer/1280/720'],
+  },
+  {
+    id: 'one-soldier-surrenders',
+    en: {
+      title: 'The Drone\'s Guidance',
+      category: 'SHORT FILM',
+      description: 'Amidst the brutal chaos of the Ukraine war, a lone surviving soldier is spotted by an enemy drone. Instead of death, the machine offers guidance—a path to a medical station to surrender. But hope can be a cruel illusion on the front lines.',
+      pitch: 'A tense and poignant anti-war short film. It builds a fragile connection between man and machine, a moment of unexpected mercy in a merciless conflict. The soldier\'s journey is fraught with suspense, leading to a gut-wrenching, ironic climax that underscores the brutal randomness of war and the tragic cost of a single misstep.'
+    },
+    vi: {
+      title: 'Một Người Lính Đầu Hàng',
+      category: 'PHIM NGẮN',
+      description: 'Giữa sự hỗn loạn tàn bạo của cuộc chiến Ukraine, một người lính sống sót đơn độc bị một máy bay không người lái của đối phương phát hiện. Thay vì cái chết, cỗ máy lại đưa ra sự chỉ dẫn—một con đường đến trạm y tế để đầu hàng. Nhưng hy vọng có thể là một ảo ảnh tàn nhẫn ở tiền tuyến.',
+      pitch: 'Một bộ phim ngắn phản chiến căng thẳng và sâu sắc. Phim xây dựng một mối liên kết mong manh giữa người và máy, một khoảnh khắc của lòng thương xót bất ngờ trong một cuộc xung đột không khoan nhượng. Hành trình của người lính đầy hồi hộp, dẫn đến một cao trào mỉa mai, đau lòng, nhấn mạnh sự ngẫu nhiên tàn bạo của chiến tranh và cái giá bi thảm của một sai lầm duy nhất.'
+    },
+    thumbnailUrl: 'https://picsum.photos/seed/lone-soldier-drone/800/600',
+    images: ['https://picsum.photos/seed/war-ruins-ukraine/1280/720'],
+  },
+  {
+    id: '24h-market-presentation',
+    en: {
+      title: 'The Violinist of Alley 24',
+      category: 'MUSIC PRODUCT',
+      description: 'The launch music product for the "24h Market Presentation," telling the inspirational story of a young girl from a poor neighborhood who becomes a violin prodigy.',
+      pitch: 'This is more than a product; it\'s a symphony of hope. The music blends classical violin with contemporary beats, mirroring the protagonist\'s journey from the gritty alleys to the grand stage. The accompanying visual tells her story, proving that genius can blossom anywhere, and that a dream is the most valuable commodity.'
+    },
+    vi: {
+      title: 'Nghệ Sĩ Vĩ Cầm Hẻm 24',
+      category: 'SẢN PHẨM ÂM NHẠC',
+      description: 'Sản phẩm âm nhạc ra mắt cho "Thuyết trình Thị trường 24h," kể câu chuyện truyền cảm hứng về một cô bé từ một khu phố nghèo trở thành một thần đồng violin.',
+      pitch: 'Đây không chỉ là một sản phẩm; đó là một bản giao hưởng của hy vọng. Âm nhạc kết hợp violin cổ điển với nhịp điệu đương đại, phản ánh hành trình của nhân vật chính từ những con hẻm gai góc đến sân khấu lớn. Hình ảnh đi kèm kể lại câu chuyện của cô, chứng minh rằng thiên tài có thể nảy nở ở bất cứ đâu, và rằng ước mơ là món hàng quý giá nhất.'
+    },
+    thumbnailUrl: 'https://picsum.photos/seed/violin-prodigy-street/800/600',
+    images: ['https://picsum.photos/seed/girl-playing-violin/1280/720'],
   },
 ];
 
