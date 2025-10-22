@@ -33,7 +33,7 @@ interface AppContextType {
 const AppContext = React.createContext<AppContextType | null>(null);
 
 const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [language, setLanguage] = useState<Language>('en');
+  const [language, setLanguage] = useState<Language>('vi');
   const [projects, setProjects] = useState<Project[]>(initialProjects);
   const [isAuthenticated, setIsAuthenticated] = useState(sessionStorage.getItem('isAuthenticated') === 'true');
 
@@ -329,7 +329,7 @@ const ProjectDetail: React.FC = () => {
                 <h2 className="text-3xl font-bold mb-4">Pitch</h2>
                 <p className="text-lg leading-relaxed text-gray-300 whitespace-pre-line">{projectText.pitch}</p>
                 <h2 className="text-3xl font-bold mt-8 mb-4">Description</h2>
-                <p className="text-lg leading-relaxed text-gray-300">{projectText.description}</p>
+                <p className="text-lg leading-relaxed text-gray-300 whitespace-pre-line">{projectText.description}</p>
             </div>
             <div className="flex flex-col gap-8">
                 {project.images.map((img, index) => (
@@ -718,9 +718,8 @@ const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     return (
         <div className="bg-[#0a0a0a] text-white min-h-screen">
             <header className="fixed top-0 left-20 right-0 h-28 flex items-center justify-center px-8 z-40 bg-gradient-to-b from-black/70 to-transparent">
-                 <Link to="/" className="flex items-center justify-center gap-4 group">
-                    <img src="https://i.postimg.cc/9XTy0vgG/Generated-image-1-21.png" alt="SUDY FILM STUDIO Logo" className="h-20 group-hover:scale-105 transition-transform duration-300" />
-                    <span className="text-4xl font-brand font-black hidden md:block text-shadow-lg group-hover:text-pink-300 transition-colors">SUDY FILM STUDIO</span>
+                 <Link to="/" className="flex items-center justify-center group">
+                    <img src="https://i.postimg.cc/G2b6tZvS/Generated-image-1-22.png" alt="SUDY FILM STUDIO Logo" className="h-20 group-hover:opacity-90 transition-opacity duration-300" />
                  </Link>
                  <div className="absolute top-1/2 right-8 -translate-y-1/2">
                     <button onClick={() => setLanguage('en')} className={`px-3 py-1 text-sm rounded ${language === 'en' ? 'bg-pink-500 text-white' : 'bg-gray-700'}`}>EN</button>

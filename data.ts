@@ -6,13 +6,55 @@ export const initialProjects: Project[] = [
     en: {
       title: 'DETONATION OF PINK ISLE',
       category: 'SCI-FI ACTION',
-      description: 'A team of explorers discovers a volatile island that defies the laws of physics, leading to a race against time to prevent a global catastrophe.',
-      pitch: 'PINK ISLE is a high-concept sci-fi thriller exploring themes of discovery, sacrifice, and the unknown. Using cutting-edge AI-driven visual effects, we bring a world to life where reality itself is at stake.'
+      description: `COMMERCIAL VALUE
+Strong Cinematic Structure: 3 clear acts with escalating pacing, from fantasy to action.
+
+Unique Visual Aesthetics: The contrast between Pink (Ecology/Mythology) and Gray (Technology/Tragedy).
+
+Franchise Potential: Has established enough elements (Lynh-Khoi, CPH4, Titans, The Mysterious Force) to develop into an epic cinematic universe.`,
+      pitch: `SCI-FI – TRAGIC MYTHOLOGY – EPIC ACTION
+Potential: Fictional East Sea Cinematic Universe Franchise
+
+Tagline: At 17, she discovered her power. At 17, she faced her exploited best friend.
+
+I. ACT 1: CHILDHOOD PARADISE AND THE SHOCK OF BETRAYAL
+Unique World-Building: After the explosion of the APEX space station, Pink Isle becomes a fantastical paradise. Its inhabitants live with faith in the Island God (Pink Ape) and Star Dust (a deified name for the substance CPH4). They fight using Indigenous Retro-Tech crafted from the station's debris. Core concept: Telepathic abilities peak at the age of 17.
+
+The Tragedy Begins: We meet LYNH (7), an innocent girl, granddaughter of a missing scientist. KHOI (7), a refugee from the Gray Isle which was attacked by a sea monster, is taken in by Lynh. Her pet, KHOAI, helps him open up. Their friendship blossoms under the loving care of the island's guardian warrior couple, Mr. Four and Mrs. Five.
+
+The Seed of Power: Lynh and Khoi accidentally fall into the heart of a Fossilized Volcano, where they witness the Pink Ape battling and subduing a swarm of mutated monsters, tightening Lynh's fateful bond with this Titan.
+
+The Collapse: Shortly after, a team of APEX scientists, along with security forces and an "ordinary" (but state-of-the-art) armored vehicle, lands. Conflict erupts due to misunderstandings. Mr. Four and Mrs. Five make a meaningful sacrifice to secure an escape route for Lynh and Khoi. The two children are carefully captured by APEX, bringing their childhood to an abrupt end.
+
+II. ACT 2: THE FATE OF 17 AND TWO LIVING WEAPONS
+10 years later, in a Cyberpunk rhythm:
+
+LYNH (17): Held in confinement. Her telepathic abilities EXPLODE at 17, turning her into the ULTIMATE LINK – capable of controlling the Pink Ape remotely.
+
+KHOI (17): Becomes a high-ranking APEX officer. Khoi is not brainwashed but manipulated through the pain of his loss, believing APEX is the only salvation. He is given technology to control the GRAY SEA MONSTER from an underwater energy core.
+
+Central Climax: The islanders launch a rescue raid. Lynh projects her consciousness, summoning the Pink Ape. Khoi appears, controlling the Gray Sea Monster.
+
+BATTLE OF TITANS: Pink King Kong vs. Gray Sea Monster – An epic battle between two Titans, controlled by two separated best friends. Lynh is freed, but their relationship has become a fateful confrontation.
+
+III. ACT 3: THE FINAL MYSTERY AND THE EPIC DOWNFALL
+The Painful Secret: Lynh returns to the island. APEX launches an all-out assault. The mastermind is LYNH'S GRANDFATHER – the Director-General of APEX. He once loved his wife dearly but was corrupted by abusing refined CPH4 to maintain his power.
+
+The Mystery of Manipulation: Lynh uses her abilities to sense that her Grandfather is merely a puppet, being manipulated by A MORE MYSTERIOUS FORCE.
+
+The Act of Salvation: In a frenzy, her Grandfather rushes into the core lab. Lynh, instead of abandoning him, uses her consciousness to command the Pink Ape to pull him out of the explosion just in time. The Fossilized Volcano's eruption levels Pink Isle and sinks most of the APEX legion.
+
+Cliffhanger Ending: Lynh and the survivors migrate to the Gray Isle. On the desolate shore, Lynh confronts KHOI. Khoi has chosen the opposing side, an equal adversary, ready for a NEW WAR on cursed land.`
     },
     vi: {
       title: 'DETONATION OF PINK ISLE',
       category: 'HÀNH ĐỘNG KHOA HỌC VIỄN TƯỞNG',
-      description: 'Một nhóm thám hiểm khám phá ra một hòn đảo bất ổn thách thức các định luật vật lý, dẫn đến một cuộc chạy đua với thời gian để ngăn chặn một thảm họa toàn cầu.',
+      description: `GIÁ TRỊ THƯƠNG MẠI
+Cấu trúc điện ảnh mạnh: 3 hồi rõ ràng với nhịp độ tăng dần, từ kỳ ảo đến hành động.
+
+Thẩm mỹ Hình ảnh Độc đáo: Sự đối lập giữa Hồng (Sinh thái/Thần thoại) và Xám (Công nghệ/Bi kịch).
+
+Tiềm năng Franchise: Đã xây dựng đủ yếu tố (Lýnh-Khôi, CPH4, Titans, Thế lực Bí ẩn) để phát triển thành một vũ trụ điện ảnh sử thi.`,
       pitch: `PHIM KHOA HỌC VIỄN TƯỞNG – THẦN THOẠI BI KỊCH – EPIC ACTION
 Tiềm năng: Franchise Vũ trụ Biển Đông Giả tưởng
 
@@ -47,7 +89,7 @@ Hành động Cứu Rỗi: Ông Ngoại vì quá khích lao vào phòng thí ngh
 
 Kết thúc Cliffhanger: Lýnh và những người sống sót di cư đến Đảo Xám. Tại bờ biển tan hoang, Lýnh đối diện với KHÔI. Khôi đã chọn đứng về phía đối lập, một kẻ thù ngang tầm, sẵn sàng cho CUỘC CHIẾN MỚI trên vùng đất bị nguyền rủa.`
     },
-    thumbnailUrl: 'https://images.unsplash.com/photo-1581822261290-991b38693d1b?q=80&w=870&auto=format&fit=crop',
+    thumbnailUrl: 'https://i.postimg.cc/htyX2BGq/Generated-Image-October-23-2025-1-50AM.png',
     images: [
       'https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?q=80&w=871&auto=format&fit=crop',
       'https://images.unsplash.com/photo-1620121692029-d088224ddc74?q=80&w=1032&auto=format&fit=crop',
