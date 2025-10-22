@@ -14,4 +14,5 @@ export interface Project {
   images: string[];
   videoUrl?: string;
   vimeoId?: string;
+  heroBackgroundUrl?: string;
 }

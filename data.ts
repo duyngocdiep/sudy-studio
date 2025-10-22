@@ -134,6 +134,7 @@ Lýnh cùng những người sống sót di cư đến Đảo Xám hoang tàn. T
       'https://i.postimg.cc/k4JVXgG6/Generated-image-1-24.png'
     ],
     vimeoId: '1129615682',
+    heroBackgroundUrl: 'https://i.postimg.cc/J7DtzZ0m/Generated-Image-October-23-2025-1-34AM.png',
   },
   {
     id: 'lady-cloud',

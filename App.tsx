@@ -1,4 +1,5 @@
 
+
 import React, { useState, useCallback, useMemo, useRef, useEffect } from 'react';
 import { HashRouter, Routes, Route, Link, NavLink, useParams, useNavigate, Navigate, useLocation } from 'react-router-dom';
 import type { Project } from './types';
@@ -233,57 +234,187 @@ const Sidebar: React.FC = () => {
 
 const Home: React.FC<{ onPlayVideo: (vimeoId: string, title: string) => void }> = ({ onPlayVideo }) => {
   const { projects, language, t } = useAppContext();
-  const mainProject = projects[0];
-  const [currentSlide, setCurrentSlide] = useState(0);
+  
+  // --- Hero State ---
+  const [heroProject, setHeroProject] = useState(projects[0]);
+
+  // --- Background State ---
+  const [bg1, setBg1] = useState(heroProject.heroBackgroundUrl || heroProject.thumbnailUrl);
+  const [bg2, setBg2] = useState<string | null>(null);
+  const [isBg1Active, setIsBg1Active] = useState(true);
+  
+  // --- Slider State ---
   const visibleSlides = 4;
+  const transitionDuration = 500;
+  const sliderContainerRef = useRef<HTMLDivElement>(null);
+  const transitionTimeoutRef = useRef<number | null>(null);
+  const wheelTimeoutRef = useRef<number | null>(null);
+  const touchStartXRef = useRef(0);
 
-  const nextSlide = () => {
-    if (currentSlide < projects.length - visibleSlides) {
-      setCurrentSlide(prev => prev + 1);
+  const displayProjects = useMemo(() => {
+    if (projects.length <= visibleSlides) return projects;
+    const before = projects.slice(projects.length - visibleSlides);
+    const after = projects.slice(0, visibleSlides);
+    return [...before, ...projects, ...after];
+  }, [projects]);
+
+  const [currentIndex, setCurrentIndex] = useState(visibleSlides);
+  const [isTransitioning, setIsTransitioning] = useState(true);
+
+  const changeSlide = useCallback((direction: number) => {
+    if (!isTransitioning) return;
+    setCurrentIndex(prev => prev + direction);
+  }, [isTransitioning]);
+
+  const nextSlide = useCallback(() => changeSlide(1), [changeSlide]);
+  const prevSlide = useCallback(() => changeSlide(-1), [changeSlide]);
+
+  // Effect for infinite loop jump
+  useEffect(() => {
+    if (currentIndex === projects.length + visibleSlides || currentIndex === visibleSlides - 1) {
+      transitionTimeoutRef.current = setTimeout(() => {
+        setIsTransitioning(false);
+        const newIndex = currentIndex === projects.length + visibleSlides
+          ? visibleSlides
+          : projects.length + visibleSlides - 1;
+        setCurrentIndex(newIndex);
+      }, transitionDuration);
     }
-  };
+    return () => {
+      if (transitionTimeoutRef.current) clearTimeout(transitionTimeoutRef.current);
+    };
+  }, [currentIndex, projects.length]);
 
-  const prevSlide = () => {
-    if (currentSlide > 0) {
-      setCurrentSlide(prev => prev - 1);
+  // Effect to re-enable transitions after a jump
+  useEffect(() => {
+    if (!isTransitioning) {
+      setTimeout(() => setIsTransitioning(true), 50);
+    }
+  }, [isTransitioning]);
+  
+  // Effect for dynamic hero content based on scroll/swipe
+  useEffect(() => {
+    if (displayProjects.length > 0) {
+      const activeProject = displayProjects[currentIndex];
+      if (activeProject) {
+        setHeroProject(activeProject);
+      }
+    }
+  }, [currentIndex, displayProjects]);
+
+  // Effect for dynamic background based on heroProject
+  useEffect(() => {
+    if (heroProject) {
+        const newBg = heroProject.heroBackgroundUrl || heroProject.thumbnailUrl;
+        if ((isBg1Active && newBg !== bg1) || (!isBg1Active && newBg !== bg2)) {
+            if (isBg1Active) {
+                setBg2(newBg);
+            } else {
+                setBg1(newBg);
+            }
+            setIsBg1Active(prev => !prev);
+        }
+    }
+  }, [heroProject, bg1, bg2, isBg1Active]);
+  
+  // Effect for wheel and touch events
+  useEffect(() => {
+    const sliderEl = sliderContainerRef.current;
+    if (!sliderEl) return;
+
+    const handleWheel = (e: WheelEvent) => {
+      e.preventDefault();
+      if (wheelTimeoutRef.current) return;
+      if (e.deltaY < -10) prevSlide();
+      else if (e.deltaY > 10) nextSlide();
+      wheelTimeoutRef.current = setTimeout(() => {
+        wheelTimeoutRef.current = null;
+      }, 300);
+    };
+    
+    const handleTouchStart = (e: TouchEvent) => {
+      touchStartXRef.current = e.touches[0].clientX;
+    };
+    
+    const handleTouchEnd = (e: TouchEvent) => {
+      const touchEndX = e.changedTouches[0].clientX;
+      const diff = touchStartXRef.current - touchEndX;
+      if (Math.abs(diff) > 40) { // Swipe threshold
+        if (diff > 0) nextSlide();
+        else prevSlide();
+      }
+    };
+
+    sliderEl.addEventListener('wheel', handleWheel, { passive: false });
+    sliderEl.addEventListener('touchstart', handleTouchStart);
+    sliderEl.addEventListener('touchend', handleTouchEnd);
+
+    return () => {
+      sliderEl.removeEventListener('wheel', handleWheel);
+      sliderEl.removeEventListener('touchstart', handleTouchStart);
+      sliderEl.removeEventListener('touchend', handleTouchEnd);
+      if(wheelTimeoutRef.current) clearTimeout(wheelTimeoutRef.current);
+    };
+  }, [nextSlide, prevSlide]);
+
+  const handleMouseLeaveSlider = () => {
+    const activeProjectFromIndex = displayProjects[currentIndex];
+    if (activeProjectFromIndex) {
+      setHeroProject(activeProjectFromIndex);
     }
   };
 
   return (
     <div className="h-screen relative overflow-hidden">
       {/* Hero Section */}
-      <section 
-        className="h-full w-full flex items-center justify-start text-white bg-cover bg-center"
-        style={{ backgroundImage: `url('https://i.postimg.cc/J7DtzZ0m/Generated-Image-October-23-2025-1-34AM.png')` }}
-      >
+      <section className="h-full w-full flex items-center justify-start text-white">
+        <div className="absolute inset-0">
+            <div className="absolute inset-0 bg-cover bg-center transition-opacity duration-1000" style={{ backgroundImage: `url('${bg1}')`, opacity: isBg1Active ? 1 : 0 }}/>
+            {bg2 && <div className="absolute inset-0 bg-cover bg-center transition-opacity duration-1000" style={{ backgroundImage: `url('${bg2}')`, opacity: !isBg1Active ? 1 : 0 }}/>}
+        </div>
         <div className="absolute inset-0 bg-black/60"></div>
         <div className="relative z-10 px-12 md:px-24 max-w-3xl">
-          <h1 className="text-5xl md:text-7xl font-brand font-black uppercase tracking-wider text-shadow-lg">{mainProject[language].title}</h1>
-          <p className="text-xl md:text-2xl mt-4 text-pink-300">{t('heroSubtitle')}</p>
-          <Link to="/projects" className="mt-8 inline-block border-2 border-white px-8 py-3 text-lg font-semibold hover:bg-white hover:text-black transition-colors duration-300">
-            {t('heroButton')}
-          </Link>
+          <div key={heroProject.id} className="fade-in">
+            <h1 className="text-5xl md:text-7xl font-brand font-black uppercase tracking-wider text-shadow-lg">{heroProject[language].title}</h1>
+            <p className="text-xl md:text-2xl mt-4 text-pink-300">{heroProject[language].category}</p>
+            <Link to={`/project/${heroProject.id}`} className="mt-8 inline-block border-2 border-white px-8 py-3 text-lg font-semibold hover:bg-white hover:text-black transition-colors duration-300">
+              {t('heroButton')}
+            </Link>
+          </div>
         </div>
       </section>
 
       {/* Gallery Slider Section */}
-      <div className="absolute bottom-0 left-0 right-0 h-72 bg-gradient-to-t from-black via-black/90 to-transparent z-20 flex items-end pb-8">
+      <div 
+        className="absolute bottom-0 left-0 right-0 h-72 bg-gradient-to-t from-black via-black/90 to-transparent z-20 flex items-end pb-8" 
+        ref={sliderContainerRef}
+        onMouseLeave={handleMouseLeaveSlider}
+      >
         <div className="w-full relative">
             <div className="w-[90%] max-w-7xl mx-auto overflow-hidden">
-               <div className="flex -mx-3 transition-transform duration-500 ease-in-out" style={{ transform: `translateX(-${currentSlide * (100 / visibleSlides)}%)` }}>
-                    {projects.map((p) => (
-                       <div key={p.id} className="px-3 flex-shrink-0" style={{ width: `${100 / visibleSlides}%` }}>
+               <div className="flex -mx-3" style={{ 
+                    width: `${(displayProjects.length / visibleSlides) * 100}%`,
+                    transform: `translateX(-${(currentIndex / displayProjects.length) * 100}%)`,
+                    transition: isTransitioning ? `transform ${transitionDuration}ms ease-in-out` : 'none',
+                }}>
+                    {displayProjects.map((p, index) => (
+                       <div 
+                        key={`${p.id}-${index}`} 
+                        className="px-3 flex-shrink-0" 
+                        style={{ width: `${100 / displayProjects.length}%` }}
+                        onMouseEnter={() => setHeroProject(p)}
+                       >
                          <ProjectCard project={p} onPlayVideo={onPlayVideo} isCompact={true} />
                        </div>
                     ))}
                </div>
             </div>
 
-            <button onClick={prevSlide} disabled={currentSlide === 0} className="absolute top-1/2 -translate-y-1/2 left-4 md:left-8 bg-white/10 p-2 rounded-full text-white hover:bg-white/20 transition disabled:opacity-30 disabled:cursor-not-allowed">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
+            <button onClick={prevSlide} className="absolute top-1/2 -translate-y-1/2 -left-4 md:-left-2 bg-white/10 p-3 rounded-full text-white hover:bg-white/20 transition disabled:opacity-30 disabled:cursor-not-allowed z-30">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
             </button>
-            <button onClick={nextSlide} disabled={currentSlide >= projects.length - visibleSlides} className="absolute top-1/2 -translate-y-1/2 right-4 md:right-8 bg-white/10 p-2 rounded-full text-white hover:bg-white/20 transition disabled:opacity-30 disabled:cursor-not-allowed">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+            <button onClick={nextSlide} className="absolute top-1/2 -translate-y-1/2 -right-4 md:-right-2 bg-white/10 p-3 rounded-full text-white hover:bg-white/20 transition disabled:opacity-30 disabled:cursor-not-allowed z-30">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
             </button>
         </div>
       </div>
@@ -357,8 +488,15 @@ const ProjectDetail: React.FC<{ onPlayVideo: (vimeoId: string, title: string) =>
 const About: React.FC = () => {
     const { language } = useAppContext();
     return (
-        <div className="min-h-screen pt-24 pb-12 flex items-center">
-            <div className="container mx-auto px-4 text-center">
+        <div className="min-h-screen pt-24 pb-12 flex items-center relative overflow-hidden">
+            <div className="absolute inset-0 flex items-center justify-center z-0">
+                <img 
+                    src="https://i.postimg.cc/65170K31/logo-white.png" 
+                    alt="SUDY FILM STUDIO Logo Background" 
+                    className="w-2/3 md:w-1/2 max-w-lg h-auto object-contain opacity-5 pointer-events-none" 
+                />
+            </div>
+            <div className="container mx-auto px-4 text-center relative">
                 <h1 className="text-6xl font-brand font-black mb-4">SUDY FILM STUDIO</h1>
                 <p className="text-2xl text-pink-400 mb-8">Redefining Cinema with Artificial Intelligence</p>
                 <div className="max-w-3xl mx-auto text-lg text-gray-300 leading-loose">
@@ -383,8 +521,15 @@ const Contact: React.FC = () => {
     const { language, t } = useAppContext();
 
     return (
-        <div className="min-h-screen pt-24 pb-12 flex items-center">
-            <div className="container mx-auto px-4">
+        <div className="min-h-screen pt-24 pb-12 flex items-center relative overflow-hidden">
+             <div className="absolute inset-0 flex items-center justify-center z-0">
+                <img 
+                    src="https://i.postimg.cc/65170K31/logo-white.png" 
+                    alt="SUDY FILM STUDIO Logo Background" 
+                    className="w-2/3 md:w-1/2 max-w-lg h-auto object-contain opacity-5 pointer-events-none" 
+                />
+            </div>
+            <div className="container mx-auto px-4 relative">
                 <div className="text-center">
                     <h1 className="text-6xl font-brand font-black mb-4">{language === 'vi' ? 'Liên Hệ' : 'Contact Us'}</h1>
                     <p className="text-xl text-gray-400 mb-8">{language === 'vi' ? 'Kết nối với chúng tôi hoặc khám phá các công cụ AI của chúng tôi.' : 'Get in touch or explore our suite of AI tools.'}</p>
