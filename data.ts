@@ -190,6 +190,12 @@ Lýnh cùng những người sống sót di cư đến Đảo Xám hoang tàn. T
   },
 ];
 
+export const aiTools = [
+    { name: "SUDY MASTER SCRIPT", desc_en: "AI tool for film production support.", desc_vi: "Công cụ AI hỗ trợ làm phim.", link: "https://ai.studio/apps/drive/1z5RKYHiB0doSbniRRSk-oOCeB8fTDhLJ" },
+    { name: "SUDY MAGIC TOOL", desc_en: "AI-powered tool for professional photography.", desc_vi: "Công cụ AI cho nhiếp ảnh chuyên nghiệp.", link: "https://ai.studio/apps/drive/1fvOVAddGw7G5ZdRFs_8cgTNbTD4wRsB1" },
+    { name: "SUDY ARCHITECTURE", desc_en: "AI assistant for architecture and interior design.", desc_vi: "Trợ lý AI cho kiến trúc và nội thất.", link: "https://ai.studio/apps/drive/1uPpUx0cK1Ck7JxOoEQ_hqYI1dsITzDxg" }
+];
+
 export const translations = {
   en: {
     navHome: 'Home',
@@ -204,6 +210,7 @@ export const translations = {
     watchTrailer: 'Watch Trailer',
     contactEmail: 'syduy.pc@gmail.com',
     contactPhone: '+84 679 265 29',
+    aiToolSuite: 'AI Tool Suite',
   },
   vi: {
     navHome: 'Trang Chủ',
@@ -218,5 +225,6 @@ export const translations = {
     watchTrailer: 'Xem Trailer',
     contactEmail: 'syduy.pc@gmail.com',
     contactPhone: '+84 679 265 29',
+    aiToolSuite: 'Bộ Công Cụ AI',
   }
 };

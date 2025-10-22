@@ -2,7 +2,7 @@
 import React, { useState, useCallback, useMemo, useRef, useEffect } from 'react';
 import { HashRouter, Routes, Route, Link, NavLink, useParams, useNavigate, Navigate, useLocation } from 'react-router-dom';
 import type { Project } from './types';
-import { initialProjects, translations } from './data';
+import { initialProjects, translations, aiTools } from './data';
 import Vimeo from '@vimeo/player';
 
 // --- ICONS ---
@@ -265,7 +265,7 @@ const Home: React.FC<{ onPlayVideo: (vimeoId: string, title: string) => void }> 
           </Link>
         </div>
       </section>
-      
+
       {/* Gallery Slider Section */}
       <div className="absolute bottom-0 left-0 right-0 h-72 bg-gradient-to-t from-black via-black/90 to-transparent z-20 flex items-end pb-8">
         <div className="w-full relative">
@@ -381,11 +381,6 @@ const About: React.FC = () => {
 
 const Contact: React.FC = () => {
     const { language, t } = useAppContext();
-    const tools = [
-        { name: "SUDY MASTER SCRIPT", desc_en: "AI tool for film production support.", desc_vi: "Công cụ AI hỗ trợ làm phim.", link: "https://ai.studio/apps/drive/1z5RKYHiB0doSbniRRSk-oOCeB8fTDhLJ" },
-        { name: "SUDY MAGIC TOOL", desc_en: "AI-powered tool for professional photography.", desc_vi: "Công cụ AI cho nhiếp ảnh chuyên nghiệp.", link: "https://ai.studio/apps/drive/1fvOVAddGw7G5ZdRFs_8cgTNbTD4wRsB1" },
-        { name: "SUDY ARCHITECTURE", desc_en: "AI assistant for architecture and interior design.", desc_vi: "Trợ lý AI cho kiến trúc và nội thất.", link: "https://ai.studio/apps/drive/1uPpUx0cK1Ck7JxOoEQ_hqYI1dsITzDxg" }
-    ];
 
     return (
         <div className="min-h-screen pt-24 pb-12 flex items-center">
@@ -406,7 +401,7 @@ const Contact: React.FC = () => {
                 <div className="mt-16">
                     <h2 className="text-3xl font-bold text-center mb-8">{language === 'vi' ? 'Bộ Công Cụ AI' : 'AI Tool Suite'}</h2>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                        {tools.map(tool => (
+                        {aiTools.map(tool => (
                             <a href={tool.link} key={tool.name} target="_blank" rel="noopener noreferrer" className="bg-zinc-900 p-6 rounded-lg text-center hover:bg-pink-900/50 hover:scale-105 transition-all duration-300">
                                 <h3 className="text-xl font-bold text-pink-400">{tool.name}</h3>
                                 <p className="mt-2 text-gray-300">{language === 'vi' ? tool.desc_vi : tool.desc_en}</p>
@@ -729,14 +724,34 @@ const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const { t, language, setLanguage } = useAppContext();
     return (
         <div className="bg-[#0a0a0a] text-white min-h-screen">
-            <header className="fixed top-0 left-20 right-0 h-28 flex items-center justify-start px-8 z-40 bg-gradient-to-b from-black/70 to-transparent">
+            <header className="fixed top-0 left-20 right-0 h-28 flex items-center justify-between px-8 z-40 bg-gradient-to-b from-black/70 to-transparent">
                  <Link to="/" className="flex items-center gap-6 group">
                     <img src="https://i.postimg.cc/65170K31/logo-white.png" alt="SUDY FILM STUDIO Logo" className="h-20 group-hover:opacity-90 transition-opacity duration-300" />
                     <span className="text-3xl font-brand font-bold tracking-widest text-white uppercase">SUDY FILM STUDIO</span>
                  </Link>
-                 <div className="absolute top-1/2 right-8 -translate-y-1/2">
-                    <button onClick={() => setLanguage('en')} className={`px-3 py-1 text-sm rounded ${language === 'en' ? 'bg-pink-500 text-white' : 'bg-gray-700'}`}>EN</button>
-                    <button onClick={() => setLanguage('vi')} className={`px-3 py-1 text-sm rounded ml-2 ${language === 'vi' ? 'bg-pink-500 text-white' : 'bg-gray-700'}`}>VI</button>
+                 <div className="flex items-center gap-6">
+                    <nav aria-label={t('aiToolSuite')}>
+                        <ul className="flex items-center gap-6">
+                            {aiTools.map(tool => (
+                                <li key={tool.name}>
+                                    <a
+                                        href={tool.link}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-sm font-semibold text-gray-300 hover:text-pink-400 transition-colors duration-200 uppercase tracking-wider"
+                                        title={language === 'vi' ? tool.desc_vi : tool.desc_en}
+                                    >
+                                        {tool.name.replace("SUDY ", "")}
+                                    </a>
+                                </li>
+                            ))}
+                        </ul>
+                    </nav>
+                    <div className="h-6 w-px bg-white/20" />
+                    <div className="flex-shrink-0">
+                        <button onClick={() => setLanguage('en')} className={`px-3 py-1 text-sm rounded ${language === 'en' ? 'bg-pink-500 text-white' : 'bg-gray-700'}`}>EN</button>
+                        <button onClick={() => setLanguage('vi')} className={`px-3 py-1 text-sm rounded ml-2 ${language === 'vi' ? 'bg-pink-500 text-white' : 'bg-gray-700'}`}>VI</button>
+                    </div>
                  </div>
             </header>
             <Sidebar />
