@@ -8,6 +8,10 @@ export interface ProjectText {
     name: string;
     link?: string;
   };
+  scriptLink?: {
+    text: string;
+    url: string;
+  };
 }
 
 export interface Project {

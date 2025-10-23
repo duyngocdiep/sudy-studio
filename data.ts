@@ -66,6 +66,10 @@ Her Grandfather, in a frenzy, activates the CPH4 Core's self-destruct sequence. 
 3. Open Ending (Cliffhanger)
 Lynh and the survivors migrate to the desolate Gray Isle. On the shore, Lynh confronts Khoi – now an equal adversary who has chosen the opposing side. Khoi awaits a final battle. The mystery of the manipulating force remains, opening the door for a sequel.`,
       director: { name: 'Phúc Lâm', link: 'https://facebook.com/la.phuc.299931' },
+      scriptLink: {
+        text: 'Read Script Excerpt',
+        url: 'https://docs.google.com/document/d/1IJ3ARFpS0P17vfnh0V_HacN1aONAhhKqcdX1HGCKG9k/edit?usp=sharing'
+      },
     },
     vi: {
       title: 'DETONATION OF PINK ISLE',
@@ -129,6 +133,10 @@ Giao tranh Khủng khiếp: Quân đoàn APEX đối đầu với các chiến b
 3. Kết Thúc Mở (Cliffhanger)
 Lýnh cùng những người sống sót di cư đến Đảo Xám hoang tàn. Tại bờ biển, Lýnh đối diện với Khôi – kẻ thù ngang tầm, người đã chọn đứng về phe đối lập. Khôi đang chờ đợi một cuộc chiến cuối cùng. Bí ẩn về thế lực thao túng vẫn còn đó, mở ra cánh cửa cho phần tiếp theo.`,
       director: { name: 'Phúc Lâm', link: 'https://facebook.com/la.phuc.299931' },
+      scriptLink: {
+        text: 'Đọc Trích Đoạn Kịch Bản',
+        url: 'https://docs.google.com/document/d/1IJ3ARFpS0P17vfnh0V_HacN1aONAhhKqcdX1HGCKG9k/edit?usp=sharing'
+      },
     },
     thumbnailUrl: 'https://i.postimg.cc/bwtcd7B0/Generated-Image-October-23-2025-3-04AM.png',
     images: [

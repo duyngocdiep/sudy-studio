@@ -630,10 +630,12 @@ const ProjectDetail: React.FC<{ onPlayVideo: (vimeoId: string, title: string) =>
                         {t('directorProducer')}: <a href={projectText.director.link} target="_blank" rel="noopener noreferrer" className="text-pink-400 hover:underline">{projectText.director.name}</a>
                     </p>
                 )}
-              {project.vimeoId && (
+
+              <div className="mt-6 flex flex-wrap justify-center items-center gap-4">
+                {project.vimeoId && (
                   <button 
                     onClick={() => onPlayVideo(project.vimeoId!, projectText.title)}
-                    className="mt-6 inline-flex items-center gap-2 px-8 py-3 bg-pink-600 text-white font-semibold rounded-md hover:bg-pink-700 transition-colors"
+                    className="inline-flex items-center gap-2 px-8 py-3 bg-pink-600 text-white font-semibold rounded-md hover:bg-pink-700 transition-colors"
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
@@ -641,6 +643,19 @@ const ProjectDetail: React.FC<{ onPlayVideo: (vimeoId: string, title: string) =>
                     <span>{t('watchTrailer')}</span>
                   </button>
                 )}
+                {projectText.scriptLink && (
+                  <a
+                    href={projectText.scriptLink.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-8 py-3 bg-zinc-700 text-white font-semibold rounded-md hover:bg-zinc-600 transition-colors"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                    <span>{projectText.scriptLink.text}</span>
+                  </a>
+                )}
+              </div>
+              
              {project.teasers && project.teasers.length > 0 && (
                 <div className="mt-8">
                     <h2 className="text-2xl font-bold text-center mb-4">{t('teasersTitle')}</h2>
