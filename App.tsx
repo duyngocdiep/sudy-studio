@@ -1,5 +1,4 @@
-
-
+// Fix: Corrected the import statement for React and its hooks.
 import React, { useState, useCallback, useMemo, useRef, useEffect } from 'react';
 import { HashRouter, Routes, Route, Link, NavLink, useParams, useNavigate, Navigate, useLocation } from 'react-router-dom';
 import type { Project } from './types';
@@ -8,8 +7,14 @@ import Vimeo from '@vimeo/player';
 
 // --- ICONS ---
 const MenuIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
+  </svg>
+);
+
+const CloseIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
   </svg>
 );
 
@@ -17,7 +22,7 @@ const HomeIcon = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-
 const ProjectIcon = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z" /></svg>;
 const AboutIcon = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>;
 const ContactIcon = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>;
-const CogIcon = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>;
+const CogIcon = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0 3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>;
 const LogoutIcon = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" /></svg>;
 
 // --- CONTEXT ---
@@ -86,43 +91,68 @@ const useAppContext = () => {
 // --- COMPONENTS ---
 
 const VideoModal: React.FC<{ vimeoId: string; title: string; onClose: () => void }> = ({ vimeoId, title, onClose }) => {
-  const playerRef = useRef<HTMLDivElement>(null);
-  const vimeoPlayer = useRef<Vimeo.Player | null>(null);
+    const playerRef = useRef<HTMLDivElement>(null);
+    const videoContainerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    if (playerRef.current) {
-      vimeoPlayer.current = new Vimeo(playerRef.current, {
-        id: parseInt(vimeoId, 10),
-        width: 1280,
-        height: 720,
-        autoplay: true,
-        responsive: true,
-      });
-    }
+    useEffect(() => {
+        let player: Vimeo.Player | null = null;
+        let videoAspectRatio = 16 / 9;
 
-    const handleEsc = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        onClose();
-      }
-    };
-    window.addEventListener('keydown', handleEsc);
+        const setupPlayer = async () => {
+            if (playerRef.current) {
+                player = new Vimeo(playerRef.current, {
+                    id: parseInt(vimeoId, 10),
+                    autoplay: true,
+                    responsive: true, // Use Vimeo's responsive parameter
+                });
 
-    return () => {
-      window.removeEventListener('keydown', handleEsc);
-      vimeoPlayer.current?.destroy();
-    };
-  }, [vimeoId, onClose]);
+                try {
+                    const width = await player.getVideoWidth();
+                    const height = await player.getVideoHeight();
+                    if (width > 0 && height > 0) {
+                        videoAspectRatio = width / height;
+                    }
+                } catch (error) {
+                    console.warn('Could not get Vimeo video dimensions, defaulting to 16:9.', error);
+                }
 
-  return (
-    <div className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 p-4 fade-in" onClick={onClose}>
-      <div className="relative w-full max-w-4xl bg-black shadow-2xl shadow-pink-500/20" onClick={(e) => e.stopPropagation()}>
-        <button onClick={onClose} className="absolute -top-10 -right-0 text-white text-3xl z-10">&times;</button>
-        <div ref={playerRef} className="w-full aspect-video" />
-        <h3 className="text-center p-4 bg-black text-lg">{title}</h3>
-      </div>
-    </div>
-  );
+                // Set max-width and max-height based on aspect ratio to constrain the video
+                if (videoContainerRef.current) {
+                    videoContainerRef.current.style.aspectRatio = `${videoAspectRatio}`;
+                }
+            }
+        };
+
+        setupPlayer();
+
+        const handleEsc = (event: KeyboardEvent) => {
+            if (event.key === 'Escape') onClose();
+        };
+        window.addEventListener('keydown', handleEsc);
+
+        return () => {
+            window.removeEventListener('keydown', handleEsc);
+            player?.destroy();
+        };
+    }, [vimeoId, onClose]);
+
+    return (
+        <div className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 p-4 fade-in" onClick={onClose}>
+            <div
+                ref={videoContainerRef}
+                className="relative w-full max-w-6xl h-auto max-h-full bg-black shadow-2xl shadow-pink-500/20 flex flex-col"
+                onClick={(e) => e.stopPropagation()}
+            >
+                <div className="w-full h-full" ref={playerRef} />
+                <div className="flex-shrink-0">
+                   <h3 className="text-center p-2 sm:p-4 bg-black text-base sm:text-lg">{title}</h3>
+                </div>
+                 <button onClick={onClose} className="absolute -top-4 -right-4 sm:top-0 sm:right-0 sm:-translate-y-full sm:translate-x-full bg-black/50 rounded-full p-1 text-white text-3xl z-10">&times;</button>
+            </div>
+        </div>
+    );
 };
+
 
 interface ProjectCardProps {
   project: Project;
@@ -161,8 +191,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onPlayVideo, isCompa
                 )}
             </div>
             <div className={isCompact ? "pt-2" : "pt-4"}>
-                <p className={`text-xs uppercase tracking-widest text-pink-400 font-semibold ${isCompact ? 'truncate' : ''}`}>{projectText.category}</p>
-                <h3 className={`font-bold mt-1 text-gray-200 group-hover:text-white transition-colors ${isCompact ? 'text-base truncate' : 'text-lg'}`}>{projectText.title}</h3>
+                <p className={`text-xs uppercase tracking-widest text-pink-400 font-semibold`}>{projectText.category}</p>
+                <h3 className={`font-bold mt-1 text-gray-200 group-hover:text-white transition-colors whitespace-normal ${isCompact ? 'text-base' : 'text-lg'}`}>{projectText.title}</h3>
             </div>
         </Link>
     );
@@ -185,7 +215,7 @@ const Sidebar: React.FC = () => {
     { to: "/contact", icon: <ContactIcon />, label: t('navContact') },
   ];
   return (
-    <aside className="fixed top-0 left-0 h-full w-20 bg-black/50 backdrop-blur-sm flex flex-col items-center justify-between py-8 z-30">
+    <aside className="fixed top-0 left-0 h-full w-20 bg-black/50 backdrop-blur-sm hidden md:flex flex-col items-center justify-between py-8 z-30">
         <nav className="flex flex-col space-y-8">
             {navItems.map(item => (
                 <NavLink 
@@ -250,6 +280,7 @@ const Home: React.FC<{ onPlayVideo: (vimeoId: string, title: string) => void }> 
   const transitionTimeoutRef = useRef<number | null>(null);
   const wheelTimeoutRef = useRef<number | null>(null);
   const touchStartXRef = useRef(0);
+  const mobileGridRef = useRef<HTMLDivElement>(null);
 
   const displayProjects = useMemo(() => {
     if (projects.length <= visibleSlides) return projects;
@@ -260,6 +291,14 @@ const Home: React.FC<{ onPlayVideo: (vimeoId: string, title: string) => void }> 
 
   const [currentIndex, setCurrentIndex] = useState(visibleSlides);
   const [isTransitioning, setIsTransitioning] = useState(true);
+  
+  // --- Mobile Grid Pagination ---
+  const [mobilePage, setMobilePage] = useState(0);
+  const numMobilePages = useMemo(() => Math.ceil(projects.length / 4), [projects.length]);
+  const mobileGridProjects = useMemo(() => {
+    const start = mobilePage * 4;
+    return projects.slice(start, start + 4);
+  }, [mobilePage, projects]);
 
   const changeSlide = useCallback((direction: number) => {
     if (!isTransitioning) return;
@@ -268,11 +307,27 @@ const Home: React.FC<{ onPlayVideo: (vimeoId: string, title: string) => void }> 
 
   const nextSlide = useCallback(() => changeSlide(1), [changeSlide]);
   const prevSlide = useCallback(() => changeSlide(-1), [changeSlide]);
+  
+  const handlePrev = useCallback(() => {
+    if (mobileGridRef.current && mobileGridRef.current.offsetParent !== null) {
+      setMobilePage(p => (p - 1 + numMobilePages) % numMobilePages);
+    } else {
+      prevSlide();
+    }
+  }, [numMobilePages, prevSlide]);
+
+  const handleNext = useCallback(() => {
+    if (mobileGridRef.current && mobileGridRef.current.offsetParent !== null) {
+      setMobilePage(p => (p + 1) % numMobilePages);
+    } else {
+      nextSlide();
+    }
+  }, [numMobilePages, nextSlide]);
 
   // Effect for infinite loop jump
   useEffect(() => {
     if (currentIndex === projects.length + visibleSlides || currentIndex === visibleSlides - 1) {
-      transitionTimeoutRef.current = setTimeout(() => {
+      transitionTimeoutRef.current = window.setTimeout(() => {
         setIsTransitioning(false);
         const newIndex = currentIndex === projects.length + visibleSlides
           ? visibleSlides
@@ -325,9 +380,9 @@ const Home: React.FC<{ onPlayVideo: (vimeoId: string, title: string) => void }> 
     const handleWheel = (e: WheelEvent) => {
       e.preventDefault();
       if (wheelTimeoutRef.current) return;
-      if (e.deltaY < -10) prevSlide();
-      else if (e.deltaY > 10) nextSlide();
-      wheelTimeoutRef.current = setTimeout(() => {
+      if (e.deltaY < -10) handlePrev();
+      else if (e.deltaY > 10) handleNext();
+      wheelTimeoutRef.current = window.setTimeout(() => {
         wheelTimeoutRef.current = null;
       }, 300);
     };
@@ -340,8 +395,8 @@ const Home: React.FC<{ onPlayVideo: (vimeoId: string, title: string) => void }> 
       const touchEndX = e.changedTouches[0].clientX;
       const diff = touchStartXRef.current - touchEndX;
       if (Math.abs(diff) > 40) { // Swipe threshold
-        if (diff > 0) nextSlide();
-        else prevSlide();
+        if (diff > 0) handleNext();
+        else handlePrev();
       }
     };
 
@@ -355,7 +410,7 @@ const Home: React.FC<{ onPlayVideo: (vimeoId: string, title: string) => void }> 
       sliderEl.removeEventListener('touchend', handleTouchEnd);
       if(wheelTimeoutRef.current) clearTimeout(wheelTimeoutRef.current);
     };
-  }, [nextSlide, prevSlide]);
+  }, [handleNext, handlePrev]);
 
   const handleMouseLeaveSlider = () => {
     const activeProjectFromIndex = displayProjects[currentIndex];
@@ -367,17 +422,17 @@ const Home: React.FC<{ onPlayVideo: (vimeoId: string, title: string) => void }> 
   return (
     <div className="h-screen relative overflow-hidden">
       {/* Hero Section */}
-      <section className="h-full w-full flex items-center justify-start text-white">
+      <section className="h-full w-full flex items-start sm:items-center justify-start text-white">
         <div className="absolute inset-0">
             <div className="absolute inset-0 bg-cover bg-center transition-opacity duration-1000" style={{ backgroundImage: `url('${bg1}')`, opacity: isBg1Active ? 1 : 0 }}/>
             {bg2 && <div className="absolute inset-0 bg-cover bg-center transition-opacity duration-1000" style={{ backgroundImage: `url('${bg2}')`, opacity: !isBg1Active ? 1 : 0 }}/>}
         </div>
         <div className="absolute inset-0 bg-black/60"></div>
-        <div className="relative z-10 px-12 md:px-24 max-w-3xl">
+        <div className="relative z-10 px-4 sm:px-12 md:px-24 max-w-3xl pt-24 sm:pt-0">
           <div key={heroProject.id} className="fade-in">
-            <h1 className="text-5xl md:text-7xl font-brand font-black uppercase tracking-wider text-shadow-lg">{heroProject[language].title}</h1>
-            <p className="text-xl md:text-2xl mt-4 text-pink-300">{heroProject[language].category}</p>
-            <Link to={`/project/${heroProject.id}`} className="mt-8 inline-block border-2 border-white px-8 py-3 text-lg font-semibold hover:bg-white hover:text-black transition-colors duration-300">
+            <h1 className="text-2xl leading-tight sm:text-4xl md:text-6xl font-brand font-black uppercase tracking-wider text-shadow-lg">{heroProject[language].title}</h1>
+            <p className="text-lg sm:text-xl md:text-2xl mt-4 text-pink-300">{heroProject[language].category}</p>
+            <Link to={`/project/${heroProject.id}`} className="mt-6 inline-block border-2 border-white px-6 py-2 text-base sm:px-8 sm:py-3 sm:text-lg font-semibold hover:bg-white hover:text-black transition-colors duration-300">
               {t('heroButton')}
             </Link>
           </div>
@@ -386,12 +441,24 @@ const Home: React.FC<{ onPlayVideo: (vimeoId: string, title: string) => void }> 
 
       {/* Gallery Slider Section */}
       <div 
-        className="absolute bottom-0 left-0 right-0 h-72 bg-gradient-to-t from-black via-black/90 to-transparent z-20 flex items-end pb-8" 
+        className="absolute bottom-0 left-0 right-0 h-auto pt-32 pb-8 sm:pt-0 sm:pb-4 sm:h-64 bg-gradient-to-t from-black via-black/90 to-transparent z-20 flex items-end" 
         ref={sliderContainerRef}
         onMouseLeave={handleMouseLeaveSlider}
       >
         <div className="w-full relative">
-            <div className="w-[90%] max-w-7xl mx-auto overflow-hidden">
+            {/* Mobile 2x2 Grid */}
+            <div ref={mobileGridRef} className="w-[90%] max-w-md mx-auto sm:hidden">
+              <div className="grid grid-cols-2 gap-x-4 gap-y-6">
+                {mobileGridProjects.map(p => (
+                  <div key={p.id} onMouseEnter={() => setHeroProject(p)}>
+                    <ProjectCard project={p} onPlayVideo={onPlayVideo} isCompact={false} />
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Original Slider for sm+ screens */}
+            <div className="w-[90%] max-w-7xl mx-auto overflow-hidden hidden sm:block">
                <div className="flex -mx-3" style={{ 
                     width: `${(displayProjects.length / visibleSlides) * 100}%`,
                     transform: `translateX(-${(currentIndex / displayProjects.length) * 100}%)`,
@@ -410,10 +477,10 @@ const Home: React.FC<{ onPlayVideo: (vimeoId: string, title: string) => void }> 
                </div>
             </div>
 
-            <button onClick={prevSlide} className="absolute top-1/2 -translate-y-1/2 -left-4 md:-left-2 bg-white/10 p-3 rounded-full text-white hover:bg-white/20 transition disabled:opacity-30 disabled:cursor-not-allowed z-30">
+            <button onClick={handlePrev} className="absolute top-1/2 -translate-y-1/2 -left-4 md:-left-2 bg-white/10 p-3 rounded-full text-white hover:bg-white/20 transition disabled:opacity-30 disabled:cursor-not-allowed z-30">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
             </button>
-            <button onClick={nextSlide} className="absolute top-1/2 -translate-y-1/2 -right-4 md:-right-2 bg-white/10 p-3 rounded-full text-white hover:bg-white/20 transition disabled:opacity-30 disabled:cursor-not-allowed z-30">
+            <button onClick={handleNext} className="absolute top-1/2 -translate-y-1/2 -right-4 md:-right-2 bg-white/10 p-3 rounded-full text-white hover:bg-white/20 transition disabled:opacity-30 disabled:cursor-not-allowed z-30">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
             </button>
         </div>
@@ -426,7 +493,7 @@ const Home: React.FC<{ onPlayVideo: (vimeoId: string, title: string) => void }> 
 const ProjectsPage: React.FC<{ onPlayVideo: (vimeoId: string, title: string) => void }> = ({ onPlayVideo }) => {
     const { projects, t } = useAppContext();
     return (
-        <div className="pt-24 pb-12 min-h-screen">
+        <div className="pt-20 sm:pt-24 pb-12 min-h-screen">
             <div className="container mx-auto px-4">
                 <h1 className="text-5xl font-brand font-black text-center mb-16">{t('navProjects')}</h1>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
@@ -441,6 +508,12 @@ const ProjectDetail: React.FC<{ onPlayVideo: (vimeoId: string, title: string) =>
   const { projects, language, t } = useAppContext();
   const { id } = useParams<{ id: string }>();
   const project = projects.find(p => p.id === id);
+  
+  const [fontLevel, setFontLevel] = useState(0); // 0: sm, 1: base, 2: lg, 3: xl
+  const fontClasses = ['text-sm', 'text-base', 'text-lg', 'text-xl'];
+  const changeFontSize = (delta: number) => {
+    setFontLevel(prev => Math.max(0, Math.min(fontClasses.length - 1, prev + delta)));
+  };
 
   if (!project) {
     return <div className="pt-20 text-center">Project not found.</div>;
@@ -449,11 +522,11 @@ const ProjectDetail: React.FC<{ onPlayVideo: (vimeoId: string, title: string) =>
   const projectText = project[language];
 
   return (
-    <div className="min-h-screen pt-24 pb-12 fade-in">
+    <div className="min-h-screen pt-20 sm:pt-24 pb-12 fade-in">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
             <p className="text-pink-400 uppercase tracking-widest">{projectText.category}</p>
-            <h1 className="text-6xl font-brand font-black my-4">{projectText.title}</h1>
+            <h1 className="text-3xl sm:text-4xl md:text-6xl font-brand font-black my-4">{projectText.title}</h1>
             {project.vimeoId && (
                 <button 
                   onClick={() => onPlayVideo(project.vimeoId!, projectText.title)}
@@ -467,12 +540,32 @@ const ProjectDetail: React.FC<{ onPlayVideo: (vimeoId: string, title: string) =>
               )}
         </div>
         
+        <div className="flex justify-end items-center gap-2 mb-4">
+            <span className="text-sm text-gray-400">Font Size:</span>
+            <button 
+                onClick={() => changeFontSize(-1)} 
+                disabled={fontLevel === 0}
+                className="w-8 h-8 rounded-md bg-zinc-800 hover:bg-zinc-700 disabled:opacity-50 disabled:cursor-not-allowed font-mono"
+                aria-label="Decrease font size"
+            >
+                A-
+            </button>
+            <button 
+                onClick={() => changeFontSize(1)}
+                disabled={fontLevel === fontClasses.length - 1}
+                className="w-8 h-8 rounded-md bg-zinc-800 hover:bg-zinc-700 disabled:opacity-50 disabled:cursor-not-allowed font-mono"
+                aria-label="Increase font size"
+            >
+                A+
+            </button>
+        </div>
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             <div>
                 <h2 className="text-3xl font-bold mb-4">Pitch</h2>
-                <p className="text-lg leading-relaxed text-gray-300 whitespace-pre-line">{projectText.pitch}</p>
+                <p className={`leading-relaxed text-gray-300 whitespace-pre-line ${fontClasses[fontLevel]}`}>{projectText.pitch}</p>
                 <h2 className="text-3xl font-bold mt-8 mb-4">Description</h2>
-                <p className="text-lg leading-relaxed text-gray-300 whitespace-pre-line">{projectText.description}</p>
+                <p className={`leading-relaxed text-gray-300 whitespace-pre-line ${fontClasses[fontLevel]}`}>{projectText.description}</p>
             </div>
             <div className="flex flex-col gap-8">
                 {project.images.map((img, index) => (
@@ -488,7 +581,7 @@ const ProjectDetail: React.FC<{ onPlayVideo: (vimeoId: string, title: string) =>
 const About: React.FC = () => {
     const { language } = useAppContext();
     return (
-        <div className="min-h-screen pt-24 pb-12 flex items-center relative overflow-hidden">
+        <div className="min-h-screen pt-20 sm:pt-24 pb-12 flex items-center relative overflow-hidden">
             <div className="absolute inset-0 flex items-center justify-center z-0">
                 <img 
                     src="https://i.postimg.cc/65170K31/logo-white.png" 
@@ -497,8 +590,8 @@ const About: React.FC = () => {
                 />
             </div>
             <div className="container mx-auto px-4 text-center relative">
-                <h1 className="text-6xl font-brand font-black mb-4">SUDY FILM STUDIO</h1>
-                <p className="text-2xl text-pink-400 mb-8">Redefining Cinema with Artificial Intelligence</p>
+                <h1 className="text-4xl md:text-6xl font-brand font-black mb-4">SUDY FILM STUDIO</h1>
+                <p className="text-xl md:text-2xl text-pink-400 mb-8">Redefining Cinema with Artificial Intelligence</p>
                 <div className="max-w-3xl mx-auto text-lg text-gray-300 leading-loose">
                     {language === 'vi' ? (
                         <>
@@ -521,7 +614,7 @@ const Contact: React.FC = () => {
     const { language, t } = useAppContext();
 
     return (
-        <div className="min-h-screen pt-24 pb-12 flex items-center relative overflow-hidden">
+        <div className="min-h-screen pt-20 sm:pt-24 pb-12 flex items-center relative overflow-hidden">
              <div className="absolute inset-0 flex items-center justify-center z-0">
                 <img 
                     src="https://i.postimg.cc/65170K31/logo-white.png" 
@@ -531,9 +624,9 @@ const Contact: React.FC = () => {
             </div>
             <div className="container mx-auto px-4 relative">
                 <div className="text-center">
-                    <h1 className="text-6xl font-brand font-black mb-4">{language === 'vi' ? 'Liên Hệ' : 'Contact Us'}</h1>
-                    <p className="text-xl text-gray-400 mb-8">{language === 'vi' ? 'Kết nối với chúng tôi hoặc khám phá các công cụ AI của chúng tôi.' : 'Get in touch or explore our suite of AI tools.'}</p>
-                    <div className="space-y-2 text-xl">
+                    <h1 className="text-4xl md:text-6xl font-brand font-black mb-4">{language === 'vi' ? 'Liên Hệ' : 'Contact Us'}</h1>
+                    <p className="text-lg md:text-xl text-gray-400 mb-8">{language === 'vi' ? 'Kết nối với chúng tôi hoặc khám phá các công cụ AI của chúng tôi.' : 'Get in touch or explore our suite of AI tools.'}</p>
+                    <div className="space-y-2 text-lg md:text-xl">
                         <p>
                             Email: <a href={`mailto:${t('contactEmail')}`} className="font-semibold hover:text-pink-400 transition-colors">{t('contactEmail')}</a>
                         </p>
@@ -580,7 +673,7 @@ const LoginPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center">
+    <div className="min-h-screen flex items-center justify-center p-4">
       <div className="w-full max-w-md p-8 space-y-8 bg-zinc-900 rounded-lg shadow-2xl shadow-pink-500/10">
         <div className="text-center">
           <h1 className="text-4xl font-brand font-black">Admin Login</h1>
@@ -829,10 +922,10 @@ const AdminPage: React.FC = () => {
   };
 
   return (
-    <div className="pt-24 pb-12 min-h-screen">
+    <div className="pt-20 sm:pt-24 pb-12 min-h-screen">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center mb-12">
-          <h1 className="text-5xl font-brand font-black">{t('admin')}</h1>
+          <h1 className="text-4xl md:text-5xl font-brand font-black">{t('admin')}</h1>
           <button onClick={handleAddNew} className="px-6 py-3 bg-pink-600 text-white font-semibold rounded-md hover:bg-pink-700 transition-colors">
               Add New Project
           </button>
@@ -841,12 +934,12 @@ const AdminPage: React.FC = () => {
         <div className="bg-zinc-900 rounded-lg shadow-lg">
           <ul className="divide-y divide-zinc-800">
             {projects.map(project => (
-              <li key={project.id} className="p-4 flex justify-between items-center">
-                <div>
+              <li key={project.id} className="p-4 flex flex-col sm:flex-row justify-between sm:items-center">
+                <div className="mb-2 sm:mb-0">
                   <p className="font-bold text-lg text-white">{project.en.title}</p>
                   <p className="text-sm text-gray-400">{project.id}</p>
                 </div>
-                <div className="flex items-center space-x-4">
+                <div className="flex items-center space-x-4 flex-shrink-0">
                   <button onClick={() => handleEdit(project)} className="text-blue-400 hover:text-blue-300">Edit</button>
                   <button onClick={() => handleDelete(project.id)} className="text-red-500 hover:text-red-400">Delete</button>
                 </div>
@@ -865,16 +958,98 @@ const AdminPage: React.FC = () => {
 
 // --- LAYOUT & MAIN APP ---
 
+const MobileMenu: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isOpen, onClose }) => {
+    const { t, language, setLanguage, isAuthenticated, logout } = useAppContext();
+    const navigate = useNavigate();
+
+    const handleNav = (to: string) => {
+        navigate(to);
+        onClose();
+    };
+
+    const handleLogout = () => {
+        logout();
+        handleNav('/');
+    };
+    
+    const navItems = [
+        { to: "/projects", label: t('navProjects') },
+        { to: "/about", label: t('navAbout') },
+        { to: "/contact", label: t('navContact') },
+    ];
+    
+    if (!isOpen) return null;
+
+    return (
+        <div className="fixed inset-0 bg-zinc-900 z-50 p-6 flex flex-col fade-in md:hidden" role="dialog" aria-modal="true">
+            <div className="flex justify-between items-center mb-12">
+                <Link to="/" onClick={onClose}>
+                    <img src="https://i.postimg.cc/65170K31/logo-white.png" alt="SUDY FILM STUDIO Logo" className="h-20" />
+                </Link>
+                <button onClick={onClose} aria-label="Close menu">
+                    <CloseIcon />
+                </button>
+            </div>
+
+            <nav className="flex-grow">
+                <ul className="flex flex-col items-center justify-center space-y-6 text-2xl font-semibold">
+                    {navItems.map(item => (
+                        <li key={item.to}>
+                           <NavLink to={item.to} onClick={onClose} className={({isActive}) => `py-2 ${isActive ? 'text-pink-400' : 'text-white'}`}>{item.label}</NavLink>
+                        </li>
+                    ))}
+                </ul>
+            </nav>
+
+            <div className="text-center space-y-6">
+                <div>
+                    <h3 className="text-lg font-bold text-pink-400 mb-3">{t('aiToolSuite')}</h3>
+                    <div className="flex flex-col space-y-2">
+                        {aiTools.map(tool => (
+                            <a href={tool.link} key={tool.name} target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white">
+                                {tool.name}
+                            </a>
+                        ))}
+                    </div>
+                </div>
+
+                <div className="h-px w-24 bg-white/20 mx-auto" />
+
+                <div className="flex-shrink-0">
+                    <button onClick={() => { setLanguage('en'); onClose(); }} className={`px-4 py-2 text-sm rounded ${language === 'en' ? 'bg-pink-500 text-white' : 'bg-gray-700'}`}>English</button>
+                    <button onClick={() => { setLanguage('vi'); onClose(); }} className={`px-4 py-2 text-sm rounded ml-2 ${language === 'vi' ? 'bg-pink-500 text-white' : 'bg-gray-700'}`}>Vietnamese</button>
+                </div>
+
+                <div className="h-px w-24 bg-white/20 mx-auto" />
+
+                <div>
+                    <button onClick={() => handleNav(isAuthenticated ? "/admin" : "/login")} className="text-lg font-semibold py-2">
+                        {t('admin')}
+                    </button>
+                    {isAuthenticated && (
+                        <button onClick={handleLogout} className="text-lg font-semibold py-2 ml-6 text-red-400">
+                            Logout
+                        </button>
+                    )}
+                </div>
+            </div>
+        </div>
+    );
+};
+
+
 const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const { t, language, setLanguage } = useAppContext();
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    
     return (
         <div className="bg-[#0a0a0a] text-white min-h-screen">
-            <header className="fixed top-0 left-20 right-0 h-28 flex items-center justify-between px-8 z-40 bg-gradient-to-b from-black/70 to-transparent">
-                 <Link to="/" className="flex items-center gap-6 group">
-                    <img src="https://i.postimg.cc/65170K31/logo-white.png" alt="SUDY FILM STUDIO Logo" className="h-24 group-hover:opacity-90 transition-opacity duration-300" />
-                    <span className="text-3xl font-brand font-bold tracking-widest text-white uppercase">SUDY FILM STUDIO</span>
+            <header className="fixed top-0 left-0 md:left-20 right-0 h-20 sm:h-24 flex items-center justify-between px-4 sm:px-8 z-40 bg-gradient-to-b from-black/70 to-transparent">
+                 <Link to="/" className="flex items-center gap-2 sm:gap-6 group">
+                    <img src="https://i.postimg.cc/65170K31/logo-white.png" alt="SUDY FILM STUDIO Logo" className="h-12 sm:h-20 group-hover:opacity-90 transition-opacity duration-300" />
+                    <span className="text-lg sm:text-xl lg:text-3xl font-brand font-bold tracking-widest text-white uppercase sm:inline-block">SUDY FILM STUDIO</span>
                  </Link>
-                 <div className="flex items-center gap-6">
+                 <div className="hidden md:flex items-center gap-6">
                     <nav aria-label={t('aiToolSuite')}>
                         <ul className="flex items-center gap-6">
                             {aiTools.map(tool => (
@@ -898,16 +1073,29 @@ const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                         <button onClick={() => setLanguage('vi')} className={`px-3 py-1 text-sm rounded ml-2 ${language === 'vi' ? 'bg-pink-500 text-white' : 'bg-gray-700'}`}>VI</button>
                     </div>
                  </div>
+                 <button onClick={() => setIsMobileMenuOpen(true)} className="p-2 md:hidden" aria-label="Open menu">
+                    <MenuIcon />
+                 </button>
             </header>
             <Sidebar />
-            <main className="ml-20">
+            <MobileMenu isOpen={isMobileMenuOpen} onClose={() => setIsMobileMenuOpen(false)} />
+            <main className="md:ml-20">
                 {children}
             </main>
-            <footer className="ml-20 py-6 text-center text-gray-500">
+            <footer className="md:ml-20 py-4 px-4 text-center text-gray-500 text-xs">
                 &copy; {new Date().getFullYear()} SUDY FILM STUDIO | {t('founder')}: Trương Điền Duy
             </footer>
         </div>
     );
+};
+
+const HomePageOrRedirect: React.FC<{ onPlayVideo: (vimeoId: string, title: string) => void }> = ({ onPlayVideo }) => {
+    // Check screen width once on initial render to determine layout.
+    // useRef ensures this check is not re-evaluated on re-renders (e.g., from parent state changes).
+    const isMobile = useRef(window.innerWidth < 768).current;
+
+    // On mobile, redirect to the projects page. For larger screens, show the Home page.
+    return isMobile ? <Navigate to="/projects" replace /> : <Home onPlayVideo={onPlayVideo} />;
 };
 
 export default function App() {
@@ -926,7 +1114,7 @@ export default function App() {
       <HashRouter>
         <MainLayout>
           <Routes>
-            <Route path="/" element={<Home onPlayVideo={handlePlayVideo} />} />
+            <Route path="/" element={<HomePageOrRedirect onPlayVideo={handlePlayVideo} />} />
             <Route path="/projects" element={<ProjectsPage onPlayVideo={handlePlayVideo} />} />
             <Route path="/project/:id" element={<ProjectDetail onPlayVideo={handlePlayVideo} />} />
             <Route path="/about" element={<About />} />
