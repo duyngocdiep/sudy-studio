@@ -624,7 +624,12 @@ const ProjectDetail: React.FC<{ onPlayVideo: (vimeoId: string, title: string) =>
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
               <p className="text-pink-400 uppercase tracking-widest">{projectText.category}</p>
-              <h1 className="text-3xl sm:text-4xl md:text-6xl font-brand font-black my-4">{projectText.title}</h1>
+              <h1 className="text-3xl sm:text-4xl md:text-6xl font-brand font-black my-2">{projectText.title}</h1>
+               {projectText.director && (
+                    <p className="mt-2 text-lg text-gray-300">
+                        {t('directorProducer')}: <a href={projectText.director.link} target="_blank" rel="noopener noreferrer" className="text-pink-400 hover:underline">{projectText.director.name}</a>
+                    </p>
+                )}
               {project.vimeoId && (
                   <button 
                     onClick={() => onPlayVideo(project.vimeoId!, projectText.title)}
@@ -636,6 +641,25 @@ const ProjectDetail: React.FC<{ onPlayVideo: (vimeoId: string, title: string) =>
                     <span>{t('watchTrailer')}</span>
                   </button>
                 )}
+             {project.teasers && project.teasers.length > 0 && (
+                <div className="mt-8">
+                    <h2 className="text-2xl font-bold text-center mb-4">{t('teasersTitle')}</h2>
+                    <div className="flex flex-wrap justify-center gap-4">
+                        {project.teasers.map((teaser, index) => (
+                            <button
+                                key={index}
+                                onClick={() => onPlayVideo(teaser.vimeoId, teaser[language].title)}
+                                className="inline-flex items-center gap-2 px-5 py-2 bg-zinc-800 text-white font-semibold rounded-md hover:bg-zinc-700 transition-colors"
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
+                                </svg>
+                                <span>{teaser[language].title}</span>
+                            </button>
+                        ))}
+                    </div>
+                </div>
+              )}
           </div>
           
           {project.id === 'pink-isle' && (

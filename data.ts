@@ -64,7 +64,8 @@ Terrifying Battle: The APEX legion clashes with the Pink Isle warriors and a swa
 Her Grandfather, in a frenzy, activates the CPH4 Core's self-destruct sequence. Lynh, despite her pain, uses her power and the Pink Ape to create a shield, pulling her Grandfather from the explosion just before the Fossilized Volcano erupts. Pink Isle is completely obliterated.
 
 3. Open Ending (Cliffhanger)
-Lynh and the survivors migrate to the desolate Gray Isle. On the shore, Lynh confronts Khoi – now an equal adversary who has chosen the opposing side. Khoi awaits a final battle. The mystery of the manipulating force remains, opening the door for a sequel.`
+Lynh and the survivors migrate to the desolate Gray Isle. On the shore, Lynh confronts Khoi – now an equal adversary who has chosen the opposing side. Khoi awaits a final battle. The mystery of the manipulating force remains, opening the door for a sequel.`,
+      director: { name: 'Phúc Lâm', link: 'https://facebook.com/la.phuc.299931' },
     },
     vi: {
       title: 'DETONATION OF PINK ISLE',
@@ -126,7 +127,8 @@ Giao tranh Khủng khiếp: Quân đoàn APEX đối đầu với các chiến b
 Ông Ngoại, vì quá khích, kích hoạt chế độ tự hủy của Lõi CPH4. Lýnh, dù đau đớn, vẫn dùng năng lực và Khỉ Hồng để tạo lá chắn, kéo Ông Ngoại ra khỏi vụ nổ ngay trước khi Núi lửa Hóa Thạch nổ tung. Đảo Hồng bị xóa sổ hoàn toàn.
 
 3. Kết Thúc Mở (Cliffhanger)
-Lýnh cùng những người sống sót di cư đến Đảo Xám hoang tàn. Tại bờ biển, Lýnh đối diện với Khôi – kẻ thù ngang tầm, người đã chọn đứng về phe đối lập. Khôi đang chờ đợi một cuộc chiến cuối cùng. Bí ẩn về thế lực thao túng vẫn còn đó, mở ra cánh cửa cho phần tiếp theo.`
+Lýnh cùng những người sống sót di cư đến Đảo Xám hoang tàn. Tại bờ biển, Lýnh đối diện với Khôi – kẻ thù ngang tầm, người đã chọn đứng về phe đối lập. Khôi đang chờ đợi một cuộc chiến cuối cùng. Bí ẩn về thế lực thao túng vẫn còn đó, mở ra cánh cửa cho phần tiếp theo.`,
+      director: { name: 'Phúc Lâm', link: 'https://facebook.com/la.phuc.299931' },
     },
     thumbnailUrl: 'https://i.postimg.cc/bwtcd7B0/Generated-Image-October-23-2025-3-04AM.png',
     images: [
@@ -136,6 +138,23 @@ Lýnh cùng những người sống sót di cư đến Đảo Xám hoang tàn. T
     ],
     vimeoId: '1129615682',
     heroBackgroundUrl: 'https://i.postimg.cc/J7DtzZ0m/Generated-Image-October-23-2025-1-34AM.png',
+    teasers: [
+      {
+        en: { title: 'Landing Clip' },
+        vi: { title: 'Clip Đổ Bộ' },
+        vimeoId: '1129779809',
+      },
+      {
+        en: { title: 'Lynh and the Dog' },
+        vi: { title: 'Clip Lynh và Chú Chó' },
+        vimeoId: '1129780174',
+      },
+      {
+        en: { title: 'King Kong vs. Leviathan Teaser v.01' },
+        vi: { title: 'Teaser King Kong đấu Leviathan v.01' },
+        vimeoId: '1129780368',
+      }
+    ]
   },
   {
     id: 'lady-cloud',
@@ -382,6 +401,8 @@ export const translations = {
     crowdfundingThanks: 'We extend our deepest gratitude to the individuals and organizations who have generously contributed to our creative endeavors. Your support is the cornerstone of our success.',
     sponsorsOrganizations: 'Organizations',
     sponsorsIndividuals: 'Individuals',
+    directorProducer: 'Director & Producer',
+    teasersTitle: 'Teasers',
   },
   vi: {
     navHome: 'Trang Chủ',
@@ -426,5 +447,7 @@ export const translations = {
     crowdfundingThanks: 'Chúng tôi xin gửi lời tri ân sâu sắc nhất đến các cá nhân và tổ chức đã hào phóng đóng góp cho những nỗ lực sáng tạo của chúng tôi. Sự ủng hộ của bạn là nền tảng cho thành công của studio.',
     sponsorsOrganizations: 'Tổ Chức',
     sponsorsIndividuals: 'Cá Nhân',
+    directorProducer: 'Đạo diễn & Sản xuất',
+    teasersTitle: 'Teaser Clips',
   }
 };

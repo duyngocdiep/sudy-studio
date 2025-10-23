@@ -4,6 +4,10 @@ export interface ProjectText {
   category: string;
   description: string;
   pitch: string;
+  director?: {
+    name: string;
+    link?: string;
+  };
 }
 
 export interface Project {
@@ -16,6 +20,11 @@ export interface Project {
   vimeoId?: string;
   heroBackgroundUrl?: string;
   isCrowdfunding?: boolean;
+  teasers?: {
+    en: { title: string };
+    vi: { title: string };
+    vimeoId: string;
+  }[];
 }
 
 export interface Sponsor {
