@@ -32,7 +32,7 @@ interface AppContextType {
   setLanguage: (lang: Language) => void;
   projects: Project[];
   updateProjects: (projects: Project[]) => void;
-  t: (key: keyof typeof translations.en) => string;
+  t: (key: keyof (typeof translations.en | typeof translations.vi)) => any;
   isAuthenticated: boolean;
   login: (user: string, pass: string) => boolean;
   logout: () => void;
@@ -504,6 +504,97 @@ const ProjectsPage: React.FC<{ onPlayVideo: (vimeoId: string, title: string) => 
     );
 };
 
+const DonationModal: React.FC<{ isOpen: boolean; onClose: () => void; projectTitle: string }> = ({ isOpen, onClose, projectTitle }) => {
+    const { t } = useAppContext();
+    const [email, setEmail] = useState('');
+    const [message, setMessage] = useState('');
+
+    if (!isOpen) return null;
+
+    const handleSendEmail = (e: React.FormEvent) => {
+        e.preventDefault();
+        const subject = `Donation for project: ${projectTitle}`;
+        const body = `Hello, I have made a donation for the project "${projectTitle}".\n\nMy email is: ${email}\n\nMessage:\n${message}`;
+        window.location.href = `mailto:syduy.pc@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    };
+
+    return (
+        <div className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 p-4 fade-in" onClick={onClose} aria-modal="true" role="dialog">
+            <div className="relative w-full max-w-2xl bg-zinc-900 shadow-2xl shadow-pink-500/20 rounded-lg max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+                <div className="p-6 text-center">
+                    <h2 className="text-2xl font-brand mb-2">{t('donationModalTitle')}</h2>
+                    <p className="text-gray-400 mb-6">{t('donationModalDesc')}</p>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                        <div className="space-y-4">
+                            <img src="https://i.postimg.cc/ncFzZp16/image.png" alt="QR Code for donation" className="mx-auto w-48 h-48 rounded-lg" />
+                             <div>
+                                <h3 className="font-bold text-lg text-pink-400">{t('donationBankInfo')}</h3>
+                                <p>{t('donationAccountName')}</p>
+                                <p>{t('donationBankName')}</p>
+                            </div>
+                        </div>
+                        <div className="text-left space-y-4">
+                            <p className="text-gray-300 text-sm">{t('donationContactPrompt')}</p>
+                             <form onSubmit={handleSendEmail} className="space-y-4">
+                                <div>
+                                    <label htmlFor="donor-email" className="block text-sm font-medium text-gray-300 mb-1">{t('donationEmailLabel')}</label>
+                                    <input type="email" id="donor-email" value={email} onChange={(e) => setEmail(e.target.value)} required className="w-full bg-zinc-800 border border-zinc-700 rounded-md p-2 text-white focus:ring-pink-500 focus:border-pink-500" />
+                                </div>
+                                <div>
+                                    <label htmlFor="donor-message" className="block text-sm font-medium text-gray-300 mb-1">{t('donationMessageLabel')}</label>
+                                    <textarea id="donor-message" value={message} onChange={(e) => setMessage(e.target.value)} rows={3} className="w-full bg-zinc-800 border border-zinc-700 rounded-md p-2 text-white focus:ring-pink-500 focus:border-pink-500"></textarea>
+                                </div>
+                                <button type="submit" className="w-full px-6 py-2 rounded-md text-white bg-pink-600 hover:bg-pink-700 transition">
+                                    {t('donationSendButton')}
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <button onClick={onClose} className="absolute top-4 right-4 text-gray-400 hover:text-white text-3xl" aria-label={t('donationClose')}>&times;</button>
+            </div>
+        </div>
+    );
+};
+
+const CrowdfundingSection: React.FC<{ onDonate: () => void }> = ({ onDonate }) => {
+    const { t } = useAppContext();
+    const goal = 2000000000;
+    const raised = goal * 0.75;
+    const progress = (raised / goal) * 100;
+
+    return (
+        <div className="bg-zinc-900/50 p-6 rounded-lg border border-zinc-800">
+            <h2 className="text-2xl font-bold mb-4">{t('crowdfundingTitle')}</h2>
+            <div className="mb-4">
+                <div className="flex justify-between items-end mb-1 text-sm">
+                    <span className="font-semibold text-pink-400">{t('crowdfundingRaised')}: {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(raised)}</span>
+                    <span>{t('crowdfundingGoal')}: {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(goal)}</span>
+                </div>
+                <div className="w-full bg-zinc-700 rounded-full h-4 overflow-hidden">
+                    <div className="bg-pink-500 h-4 rounded-full" style={{ width: `${progress}%` }}></div>
+                </div>
+            </div>
+
+            <button onClick={onDonate} className="w-full my-4 px-8 py-3 bg-pink-600 text-white font-semibold rounded-md hover:bg-pink-700 transition-colors">
+                {t('crowdfundingDonate')}
+            </button>
+            
+            <h3 className="text-xl font-semibold mt-6 mb-3">{t('crowdfundingPerksTitle')}</h3>
+            <ul className="space-y-2 text-gray-300 list-inside">
+                {(t('crowdfundingPerks') as string[]).map((perk, index) => (
+                    <li key={index} className="flex items-start">
+                        <svg className="w-5 h-5 mr-2 text-pink-400 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <span>{perk}</span>
+                    </li>
+                ))}
+            </ul>
+        </div>
+    );
+};
+
+
 const ProjectDetail: React.FC<{ onPlayVideo: (vimeoId: string, title: string) => void }> = ({ onPlayVideo }) => {
   const { projects, language, t } = useAppContext();
   const { id } = useParams<{ id: string }>();
@@ -514,6 +605,7 @@ const ProjectDetail: React.FC<{ onPlayVideo: (vimeoId: string, title: string) =>
   const changeFontSize = (delta: number) => {
     setFontLevel(prev => Math.max(0, Math.min(fontClasses.length - 1, prev + delta)));
   };
+  const [isDonationModalOpen, setIsDonationModalOpen] = useState(false);
 
   if (!project) {
     return <div className="pt-20 text-center">Project not found.</div>;
@@ -522,61 +614,92 @@ const ProjectDetail: React.FC<{ onPlayVideo: (vimeoId: string, title: string) =>
   const projectText = project[language];
 
   return (
-    <div className="min-h-screen pt-20 sm:pt-24 pb-12 fade-in">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-            <p className="text-pink-400 uppercase tracking-widest">{projectText.category}</p>
-            <h1 className="text-3xl sm:text-4xl md:text-6xl font-brand font-black my-4">{projectText.title}</h1>
-            {project.vimeoId && (
-                <button 
-                  onClick={() => onPlayVideo(project.vimeoId!, projectText.title)}
-                  className="mt-6 inline-flex items-center gap-2 px-8 py-3 bg-pink-600 text-white font-semibold rounded-md hover:bg-pink-700 transition-colors"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
-                  </svg>
-                  <span>{t('watchTrailer')}</span>
-                </button>
-              )}
-        </div>
-        
-        <div className="flex justify-end items-center gap-2 mb-4">
-            <span className="text-sm text-gray-400">Font Size:</span>
-            <button 
-                onClick={() => changeFontSize(-1)} 
-                disabled={fontLevel === 0}
-                className="w-8 h-8 rounded-md bg-zinc-800 hover:bg-zinc-700 disabled:opacity-50 disabled:cursor-not-allowed font-mono"
-                aria-label="Decrease font size"
-            >
-                A-
-            </button>
-            <button 
-                onClick={() => changeFontSize(1)}
-                disabled={fontLevel === fontClasses.length - 1}
-                className="w-8 h-8 rounded-md bg-zinc-800 hover:bg-zinc-700 disabled:opacity-50 disabled:cursor-not-allowed font-mono"
-                aria-label="Increase font size"
-            >
-                A+
-            </button>
-        </div>
+    <>
+      <div className="min-h-screen pt-20 sm:pt-24 pb-12 fade-in">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+              <p className="text-pink-400 uppercase tracking-widest">{projectText.category}</p>
+              <h1 className="text-3xl sm:text-4xl md:text-6xl font-brand font-black my-4">{projectText.title}</h1>
+              {project.vimeoId && (
+                  <button 
+                    onClick={() => onPlayVideo(project.vimeoId!, projectText.title)}
+                    className="mt-6 inline-flex items-center gap-2 px-8 py-3 bg-pink-600 text-white font-semibold rounded-md hover:bg-pink-700 transition-colors"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
+                    </svg>
+                    <span>{t('watchTrailer')}</span>
+                  </button>
+                )}
+          </div>
+          
+          {project.id === 'pink-isle' && (
+            <div className="max-w-4xl mx-auto my-12">
+              <CrowdfundingSection onDonate={() => setIsDonationModalOpen(true)} />
+            </div>
+          )}
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-            <div>
-                <h2 className="text-3xl font-bold mb-4">Pitch</h2>
-                <p className={`leading-relaxed text-gray-300 whitespace-pre-line ${fontClasses[fontLevel]}`}>{projectText.pitch}</p>
-                <h2 className="text-3xl font-bold mt-8 mb-4">Description</h2>
-                <p className={`leading-relaxed text-gray-300 whitespace-pre-line ${fontClasses[fontLevel]}`}>{projectText.description}</p>
-            </div>
-            <div className="flex flex-col gap-8">
-                {project.images.map((img, index) => (
-                    <img key={index} src={img} alt={`${projectText.title} scene ${index + 1}`} className="w-full h-auto object-cover rounded-lg shadow-2xl shadow-black/50" />
+          <div className="max-w-4xl mx-auto">
+              <div className="flex justify-end items-center gap-2 mb-4">
+                  <span className="text-sm text-gray-400">Font Size:</span>
+                  <button 
+                      onClick={() => changeFontSize(-1)} 
+                      disabled={fontLevel === 0}
+                      className="w-8 h-8 rounded-md bg-zinc-800 hover:bg-zinc-700 disabled:opacity-50 disabled:cursor-not-allowed font-mono"
+                      aria-label="Decrease font size"
+                  >
+                      A-
+                  </button>
+                  <button 
+                      onClick={() => changeFontSize(1)}
+                      disabled={fontLevel === fontClasses.length - 1}
+                      className="w-8 h-8 rounded-md bg-zinc-800 hover:bg-zinc-700 disabled:opacity-50 disabled:cursor-not-allowed font-mono"
+                      aria-label="Increase font size"
+                  >
+                      A+
+                  </button>
+              </div>
+
+              {/* Desktop Layout */}
+              <div className="hidden lg:grid grid-cols-2 gap-12 items-start">
+                  <div>
+                      <h2 className="text-3xl font-bold mb-4">Pitch</h2>
+                      <p className={`leading-relaxed text-gray-300 whitespace-pre-line ${fontClasses[fontLevel]}`}>{projectText.pitch}</p>
+                      <h2 className="text-3xl font-bold mt-8 mb-4">Description</h2>
+                      <p className={`leading-relaxed text-gray-300 whitespace-pre-line ${fontClasses[fontLevel]}`}>{projectText.description}</p>
+                  </div>
+                  <div className="flex flex-col gap-8">
+                      {project.images.map((img, index) => (
+                          <img key={index} src={img} alt={`${projectText.title} scene ${index + 1}`} className="w-full h-auto object-cover rounded-lg shadow-2xl shadow-black/50" />
+                      ))}
+                  </div>
+              </div>
+              
+              {/* Mobile Layout */}
+              <div className="block lg:hidden space-y-8">
+                {project.images[0] && <img src={project.images[0]} alt={`${projectText.title} scene 1`} className="w-full h-auto object-cover rounded-lg shadow-2xl shadow-black/50" />}
+                <div>
+                  <h2 className="text-3xl font-bold mb-4">Pitch</h2>
+                  <p className={`leading-relaxed text-gray-300 whitespace-pre-line ${fontClasses[fontLevel]}`}>{projectText.pitch}</p>
+                </div>
+                {project.images[1] && <img src={project.images[1]} alt={`${projectText.title} scene 2`} className="w-full h-auto object-cover rounded-lg shadow-2xl shadow-black/50" />}
+                <div>
+                  <h2 className="text-3xl font-bold mb-4">Description</h2>
+                  <p className={`leading-relaxed text-gray-300 whitespace-pre-line ${fontClasses[fontLevel]}`}>{projectText.description}</p>
+                </div>
+                {project.images.slice(2).map((img, index) => (
+                  <img key={index + 2} src={img} alt={`${projectText.title} scene ${index + 3}`} className="w-full h-auto object-cover rounded-lg shadow-2xl shadow-black/50" />
                 ))}
-            </div>
+              </div>
+          </div>
+
         </div>
       </div>
-    </div>
+      {project.id === 'pink-isle' && <DonationModal isOpen={isDonationModalOpen} onClose={() => setIsDonationModalOpen(false)} projectTitle={projectText.title} />}
+    </>
   );
 };
+
 
 const About: React.FC = () => {
     const { language } = useAppContext();
