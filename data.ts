@@ -1,8 +1,9 @@
-import type { Project } from './types';
+import type { Project, Sponsor } from './types';
 
 export const initialProjects: Project[] = [
   {
     id: 'pink-isle',
+    isCrowdfunding: true,
     en: {
       title: 'DETONATION OF PINK ISLE',
       category: 'SCI-FI ACTION',
@@ -117,7 +118,7 @@ III. HỒI 3: TIẾT LỘ GIA ĐÌNH VÀ SỰ SỤP ĐỔ CỦA THIÊN ĐƯỜNG
 1. Bí Mật và Giao tranh Tổng lực (Final Conflict)
 Lýnh và Ba Lýnh trở về Đảo Hồng. APEX mở cuộc tấn công trả đũa quy mô lớn, do chính ÔNG NGOẠI LÝNH (Tổng Giám đốc) dẫn đầu.
 
-Tiết lộ Sâu sắc: Ông Ngoại bị tha hóa vì mất vợ và lạm dụng CPH4 để duy trì quyền lực, nhưng Lýnh cảm nhận được ông ta đang bị thao túng bởi một THẾ LỰC BÍ ẨN siêu việt khác.
+Tiết lộ Sâu sắc: Ông Ngoại bị tha hóa vì mất vợ và lạm dụng CPH4 để duy trì quyền lực, nhưng Lýnh cảm nhận được ông ta đang bị thao túng bởi một THẾ Lực BÍ ẨN siêu việt khác.
 
 Giao tranh Khủng khiếp: Quân đoàn APEX đối đầu với các chiến binh Đảo Hồng và bầy thú đột biến.
 
@@ -316,12 +317,34 @@ export const aiTools = [
     { name: "SUDY ARCHITECTURE", desc_en: "AI assistant for architecture and interior design.", desc_vi: "Trợ lý AI cho kiến trúc và nội thất.", link: "https://ai.studio/apps/drive/1uPpUx0cK1Ck7JxOoEQ_hqYI1dsITzDxg" }
 ];
 
+export const sponsors: { organizations: Sponsor[], individuals: Sponsor[] } = {
+  organizations: [
+    { name: 'Quỹ Sáng Tạo "Rồng Bay"' },
+    { name: 'Stardust Foundation' },
+    { name: 'Tập đoàn "Sao Mai" Ventures' },
+    { name: 'Quantum Leap Studios' },
+    { name: 'Cộng đồng "Ánh Sáng Việt"' },
+    { name: 'Echo Collective Arts' },
+  ],
+  individuals: [
+    { name: 'Lê Thị "Bảy" Ánh Nguyệt' },
+    { name: 'Kenji Tanaka' },
+    { name: 'Trần "Tư" Văn Rồng' },
+    { name: 'Maria Rodriguez' },
+    { name: 'Nguyễn Thị Kim Chi' },
+    { name: 'Anonymous Phoenix' },
+    { name: 'Phạm "Năm" Hùng Dũng' },
+    { name: 'David Chen' },
+  ]
+};
+
 export const translations = {
   en: {
     navHome: 'Home',
     navProjects: 'Projects',
     navAbout: 'About',
     navContact: 'Contact',
+    navCrowdfunding: 'Crowdfunding',
     admin: 'Admin',
     heroSubtitle: 'BLOCKBUSTER AI FILMS',
     heroButton: 'EXPLORE WORKS',
@@ -352,12 +375,20 @@ export const translations = {
     donationMessageLabel: 'Message (Optional)',
     donationSendButton: 'Send Email',
     donationClose: 'Close',
+    crowdfundingPageTitle: 'Community Crowdfunding',
+    crowdfundingPageDesc: 'Together, we bring ambitious stories to life. Discover projects you can support and see the amazing community that makes it all possible.',
+    crowdfundingProjectsTitle: 'Projects Seeking Funding',
+    crowdfundingSponsorsTitle: 'Our Valued Sponsors',
+    crowdfundingThanks: 'We extend our deepest gratitude to the individuals and organizations who have generously contributed to our creative endeavors. Your support is the cornerstone of our success.',
+    sponsorsOrganizations: 'Organizations',
+    sponsorsIndividuals: 'Individuals',
   },
   vi: {
     navHome: 'Trang Chủ',
     navProjects: 'Dự Án',
     navAbout: 'Giới Thiệu',
     navContact: 'Liên Hệ',
+    navCrowdfunding: 'Gây Quỹ',
     admin: 'Quản Trị',
     heroSubtitle: 'PHIM BOM TẤN AI',
     heroButton: 'KHÁM PHÁ',
@@ -388,5 +419,12 @@ export const translations = {
     donationMessageLabel: 'Lời nhắn (Không bắt buộc)',
     donationSendButton: 'Gửi Email',
     donationClose: 'Đóng',
+    crowdfundingPageTitle: 'Gây Quỹ Cộng Đồng',
+    crowdfundingPageDesc: 'Cùng nhau, chúng ta biến những câu chuyện đầy tham vọng thành hiện thực. Khám phá các dự án bạn có thể hỗ trợ và chiêm ngưỡng cộng đồng tuyệt vời đã giúp mọi thứ trở nên khả thi.',
+    crowdfundingProjectsTitle: 'Các Dự Án Đang Kêu Gọi Vốn',
+    crowdfundingSponsorsTitle: 'Các Nhà Tài Trợ Đáng Kính',
+    crowdfundingThanks: 'Chúng tôi xin gửi lời tri ân sâu sắc nhất đến các cá nhân và tổ chức đã hào phóng đóng góp cho những nỗ lực sáng tạo của chúng tôi. Sự ủng hộ của bạn là nền tảng cho thành công của studio.',
+    sponsorsOrganizations: 'Tổ Chức',
+    sponsorsIndividuals: 'Cá Nhân',
   }
 };

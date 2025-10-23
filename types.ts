@@ -15,4 +15,9 @@ export interface Project {
   videoUrl?: string;
   vimeoId?: string;
   heroBackgroundUrl?: string;
+  isCrowdfunding?: boolean;
+}
+
+export interface Sponsor {
+  name: string;
 }

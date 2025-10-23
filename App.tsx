@@ -1,8 +1,10 @@
+
+
 // Fix: Corrected the import statement for React and its hooks.
 import React, { useState, useCallback, useMemo, useRef, useEffect } from 'react';
 import { HashRouter, Routes, Route, Link, NavLink, useParams, useNavigate, Navigate, useLocation } from 'react-router-dom';
 import type { Project } from './types';
-import { initialProjects, translations, aiTools } from './data';
+import { initialProjects, translations, aiTools, sponsors } from './data';
 import Vimeo from '@vimeo/player';
 
 // --- ICONS ---
@@ -22,6 +24,7 @@ const HomeIcon = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-
 const ProjectIcon = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z" /></svg>;
 const AboutIcon = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>;
 const ContactIcon = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>;
+const HeartIcon = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>;
 const CogIcon = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0 3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>;
 const LogoutIcon = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" /></svg>;
 
@@ -95,7 +98,8 @@ const VideoModal: React.FC<{ vimeoId: string; title: string; onClose: () => void
     const videoContainerRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        let player: Vimeo.Player | null = null;
+        // Fix: The type for a Vimeo Player instance is `Vimeo`, not `Vimeo.Player`.
+        let player: Vimeo | null = null;
         let videoAspectRatio = 16 / 9;
 
         const setupPlayer = async () => {
@@ -211,6 +215,7 @@ const Sidebar: React.FC = () => {
   const navItems = [
     { to: "/", icon: <HomeIcon />, label: t('navHome') },
     { to: "/projects", icon: <ProjectIcon />, label: t('navProjects') },
+    { to: "/crowdfunding", icon: <HeartIcon />, label: t('navCrowdfunding') },
     { to: "/about", icon: <AboutIcon />, label: t('navAbout') },
     { to: "/contact", icon: <ContactIcon />, label: t('navContact') },
   ];
@@ -775,6 +780,60 @@ const Contact: React.FC = () => {
     );
 };
 
+const CrowdfundingPage: React.FC<{ onPlayVideo: (vimeoId: string, title: string) => void }> = ({ onPlayVideo }) => {
+    const { projects, t } = useAppContext();
+    const crowdfundingProjects = projects.filter(p => p.isCrowdfunding);
+
+    return (
+        <div className="pt-20 sm:pt-24 pb-12 min-h-screen">
+            <div className="container mx-auto px-4">
+                <div className="text-center max-w-3xl mx-auto">
+                    <h1 className="text-5xl font-brand font-black mb-4">{t('crowdfundingPageTitle')}</h1>
+                    <p className="text-lg text-gray-400">{t('crowdfundingPageDesc')}</p>
+                </div>
+                
+                <div className="my-16">
+                    <h2 className="text-3xl font-bold text-center mb-8">{t('crowdfundingProjectsTitle')}</h2>
+                    {crowdfundingProjects.length > 0 ? (
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12 max-w-7xl mx-auto">
+                            {crowdfundingProjects.map(p => <ProjectCard key={p.id} project={p} onPlayVideo={onPlayVideo} />)}
+                        </div>
+                    ) : (
+                        <p className="text-center text-gray-500">There are currently no projects seeking funding. Check back soon!</p>
+                    )}
+                </div>
+
+                <div className="w-full h-px bg-zinc-800 max-w-5xl mx-auto my-16"></div>
+
+                <div className="text-center max-w-4xl mx-auto">
+                    <h2 className="text-3xl font-bold mb-4">{t('crowdfundingSponsorsTitle')}</h2>
+                    <p className="text-gray-400 mb-12">{t('crowdfundingThanks')}</p>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12 text-left">
+                        <div>
+                            <h3 className="text-2xl font-semibold text-pink-400 mb-4 border-b-2 border-pink-500/30 pb-2">{t('sponsorsOrganizations')}</h3>
+                            <ul className="space-y-3">
+                                {sponsors.organizations.map(sponsor => (
+                                    <li key={sponsor.name} className="text-lg text-gray-300">{sponsor.name}</li>
+                                ))}
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 className="text-2xl font-semibold text-pink-400 mb-4 border-b-2 border-pink-500/30 pb-2">{t('sponsorsIndividuals')}</h3>
+                             <ul className="space-y-3">
+                                {sponsors.individuals.map(sponsor => (
+                                    <li key={sponsor.name} className="text-lg text-gray-300">{sponsor.name}</li>
+                                ))}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+
 // --- ADMIN & AUTH COMPONENTS ---
 
 const LoginPage: React.FC = () => {
@@ -861,6 +920,7 @@ const emptyProject: Project = {
   thumbnailUrl: '',
   images: [],
   vimeoId: '',
+  isCrowdfunding: false,
 };
 
 const RichTextInput: React.FC<{
@@ -907,7 +967,14 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose, onSave })
   }, [project]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, lang?: 'en' | 'vi') => {
-    const { name, value } = e.target;
+    const { name, value, type } = e.target;
+    
+    if (type === 'checkbox') {
+        const { checked } = e.target as HTMLInputElement;
+        setFormData(prev => ({...prev, [name]: checked }));
+        return;
+    }
+
     if (lang) {
       setFormData(prev => ({
         ...prev,
@@ -927,19 +994,23 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose, onSave })
     onSave(formData);
   };
   
-  const FormField: React.FC<{ name: string, label: string, value: string, isTextarea?: boolean, lang?: 'en' | 'vi' }> = ({ name, label, value, isTextarea, lang }) => (
+  const FormField: React.FC<{ name: string, label: string, value: string | boolean, type?: string, isTextarea?: boolean, lang?: 'en' | 'vi' }> = ({ name, label, value, type = 'text', isTextarea, lang }) => (
     <div>
         <label htmlFor={`${name}-${lang || ''}`} className="block text-sm font-medium text-gray-300 mb-1">{label}</label>
         {isTextarea ? (
              <RichTextInput
                 id={`${name}-${lang || ''}`}
                 name={name}
-                value={value}
+                value={value as string}
                 onChange={(e) => handleChange(e, lang)}
                 rows={name === 'pitch' ? 10 : 4}
             />
+        ) : type === 'checkbox' ? (
+            <div className="flex items-center h-10">
+                 <input type="checkbox" id={`${name}-${lang || ''}`} name={name} checked={!!value} onChange={handleChange} className="h-5 w-5 rounded border-zinc-600 bg-zinc-800 text-pink-600 focus:ring-pink-500" />
+            </div>
         ) : (
-            <input type="text" id={`${name}-${lang || ''}`} name={name} value={value} onChange={(e) => handleChange(e, lang)} className="w-full bg-zinc-800 border border-zinc-700 rounded-md p-2 text-white focus:ring-pink-500 focus:border-pink-500" />
+            <input type="text" id={`${name}-${lang || ''}`} name={name} value={value as string} onChange={(e) => handleChange(e, lang)} className="w-full bg-zinc-800 border border-zinc-700 rounded-md p-2 text-white focus:ring-pink-500 focus:border-pink-500" />
         )}
     </div>
   );
@@ -957,7 +1028,10 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose, onSave })
                 <FormField name="id" label="Project ID (slug)" value={formData.id} />
                 <FormField name="thumbnailUrl" label="Thumbnail URL" value={formData.thumbnailUrl} />
             </div>
-             <FormField name="vimeoId" label="Vimeo ID (optional)" value={formData.vimeoId || ''} />
+             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <FormField name="vimeoId" label="Vimeo ID (optional)" value={formData.vimeoId || ''} />
+                <FormField name="isCrowdfunding" label="Is Crowdfunding Project?" value={!!formData.isCrowdfunding} type="checkbox" />
+             </div>
             <div>
               <label htmlFor="images" className="block text-sm font-medium text-gray-300 mb-1">Images (comma-separated URLs)</label>
               <textarea id="images" name="images" value={formData.images.join(', ')} onChange={handleImageChange} rows={3} className="w-full bg-zinc-800 border border-zinc-700 rounded-md p-2 text-white focus:ring-pink-500 focus:border-pink-500" />
@@ -1097,6 +1171,7 @@ const MobileMenu: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isOpen
     
     const navItems = [
         { to: "/projects", label: t('navProjects') },
+        { to: "/crowdfunding", label: t('navCrowdfunding') },
         { to: "/about", label: t('navAbout') },
         { to: "/contact", label: t('navContact') },
     ];
@@ -1240,6 +1315,7 @@ export default function App() {
             <Route path="/" element={<HomePageOrRedirect onPlayVideo={handlePlayVideo} />} />
             <Route path="/projects" element={<ProjectsPage onPlayVideo={handlePlayVideo} />} />
             <Route path="/project/:id" element={<ProjectDetail onPlayVideo={handlePlayVideo} />} />
+            <Route path="/crowdfunding" element={<CrowdfundingPage onPlayVideo={handlePlayVideo} />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/login" element={<LoginPage />} />
