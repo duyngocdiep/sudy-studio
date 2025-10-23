@@ -564,18 +564,26 @@ const DonationModal: React.FC<{ isOpen: boolean; onClose: () => void; projectTit
 };
 
 const CrowdfundingSection: React.FC<{ onDonate: () => void }> = ({ onDonate }) => {
-    const { t } = useAppContext();
-    const goal = 2000000000;
-    const raised = goal * 0.75;
+    const { t, language } = useAppContext();
+    const goal = 100000; // USD
+    const raised = 13872.55; // ~13.87%
     const progress = (raised / goal) * 100;
+
+    const currencyFormatter = useMemo(() => {
+        const locale = language === 'vi' ? 'vi-VN' : 'en-US';
+        return new Intl.NumberFormat(locale, {
+            style: 'currency',
+            currency: 'USD',
+        });
+    }, [language]);
 
     return (
         <div className="bg-zinc-900/50 p-6 rounded-lg border border-zinc-800">
             <h2 className="text-2xl font-bold mb-4">{t('crowdfundingTitle')}</h2>
             <div className="mb-4">
                 <div className="flex justify-between items-end mb-1 text-sm">
-                    <span className="font-semibold text-pink-400">{t('crowdfundingRaised')}: {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(raised)}</span>
-                    <span>{t('crowdfundingGoal')}: {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(goal)}</span>
+                    <span className="font-semibold text-pink-400">{t('crowdfundingRaised')}: {currencyFormatter.format(raised)}</span>
+                    <span>{t('crowdfundingGoal')}: {currencyFormatter.format(goal)}</span>
                 </div>
                 <div className="w-full bg-zinc-700 rounded-full h-4 overflow-hidden">
                     <div className="bg-pink-500 h-4 rounded-full" style={{ width: `${progress}%` }}></div>
