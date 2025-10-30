@@ -144,7 +144,7 @@ Lýnh cùng những người sống sót di cư đến Đảo Xám hoang tàn. T
       'https://i.postimg.cc/SN6pV7D6/EMXN1y8q-SQo-Gd-XBsb2Fk-Eg55b-GFi-LXN0d-W50LXNnc-Bova2xpbmcv-ZG93bmxv-YWQv-TWprek1UTXl-Nam-N6TXp-FMU56Z3d-PVEU1TWpj.png',
       'https://i.postimg.cc/k4JVXgG6/Generated-image-1-24.png'
     ],
-    vimeoId: '1129615682',
+    vimeoId: '1131793345',
     heroBackgroundUrl: 'https://i.postimg.cc/J7DtzZ0m/Generated-Image-October-23-2025-1-34AM.png',
     teasers: [
       {
@@ -220,19 +220,20 @@ Lýnh cùng những người sống sót di cư đến Đảo Xám hoang tàn. T
   {
     id: 'tvc-miss-ocean-island',
     en: {
-      title: 'Anthem of the Ocean Queen',
+      title: 'Miss Ocean Island: Legend of Mother Âu Cơ',
       category: 'MUSIC TVC',
-      description: 'The official music TVC for the Miss Ocean Island 2025 pageant in Nha Trang, capturing the beauty of the Vietnamese coast and the grace of its contestants.',
-      pitch: 'Set against the breathtaking backdrop of Nha Trang\'s beaches, this music TVC is a visual poem. It blends modern music with traditional motifs, celebrating the contestants not just for their beauty, but for their strength and connection to the sea. An anthem of empowerment and natural grace.'
+      description: 'Inspired by the legend of Mother Âu Cơ, this music TVC portrays a colossal statue of Mother Âu Cơ rising from the sea, leading the 50 most outstanding daughters of the nation—symbolizing the 50 pageant contestants—on a journey to honor the beauty and strength of Vietnamese women.',
+      pitch: 'This TVC is a visual epic, blending national mythology with contemporary beauty. The image of Mother Âu Cơ emerging from the ocean is not just a spectacular marvel but also a symbol of origin, protection, and eternal strength. The 50 contestants, like 50 children, walk with pride, carrying the beauty of their homeland and the spirit of their ancestors. It\'s a powerful message about heritage, beauty rooted in legacy, and the journey of modern-day ocean queens.'
     },
     vi: {
-      title: 'TVC Hoa Hậu Biển Đảo: Khúc Ca Nữ Hoàng Biển Cả',
+      title: 'TVC Hoa Hậu Biển Đảo: Huyền Thoại Mẹ Âu Cơ',
       category: 'TVC ÂM NHẠC',
-      description: 'Sản phẩm TVC âm nhạc chính thức cho chương trình Hoa Hậu Biển Đảo 2025 tại Nha Trang, ghi lại vẻ đẹp của bờ biển Việt Nam và sự duyên dáng của các thí sinh.',
-      pitch: 'Với bối cảnh là những bãi biển tuyệt đẹp của Nha Trang, TVC âm nhạc này là một bài thơ bằng hình ảnh. Nó kết hợp âm nhạc hiện đại với các họa tiết truyền thống, tôn vinh các thí sinh không chỉ vì vẻ đẹp của họ, mà còn vì sức mạnh và sự kết nối của họ với biển cả. Một khúc ca của sự trao quyền và vẻ đẹp tự nhiên.'
+      description: 'Lấy cảm hứng từ huyền thoại Mẹ Âu Cơ, TVC khắc họa hình ảnh một bức tượng Mẹ Âu Cơ khổng lồ trồi lên từ biển cả, dẫn dắt 50 người con gái ưu tú nhất của dân tộc, tượng trưng cho 50 thí sinh hoa hậu, trong một hành trình tôn vinh vẻ đẹp và sức mạnh của phụ nữ Việt Nam.',
+      pitch: 'TVC là một bản hùng ca thị giác, kết hợp giữa truyền thuyết dân tộc và vẻ đẹp hiện đại. Hình ảnh Mẹ Âu Cơ hiện lên từ đại dương không chỉ là một kỳ quan ngoạn mục mà còn là biểu tượng cho nguồn cội, cho sự chở che và sức mạnh vĩnh cửu. 50 thí sinh, như 50 người con, bước đi trong niềm tự hào, mang theo vẻ đẹp của non sông và khí phách của tổ tiên. Đây là một thông điệp mạnh mẽ về sự kế thừa, vẻ đẹp bắt nguồn từ di sản và hành trình của những nữ hoàng biển cả hiện đại.'
     },
-    thumbnailUrl: 'https://picsum.photos/seed/vietnam-beach-beauty/800/600',
-    images: ['https://picsum.photos/seed/nha-trang-pageant/1280/720'],
+    thumbnailUrl: 'https://i.postimg.cc/Y0XhpkXR/Generated-Image-October-30-2025-1-56AM.png',
+    images: ['https://i.postimg.cc/LXrFMWRd/sudy-vtour-step-1-2.png'],
+    vimeoId: '1130434366',
   },
   {
     id: 'bizarre-mutation',
