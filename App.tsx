@@ -1201,6 +1201,185 @@ const AdminPage: React.FC = () => {
 
 
 // --- LAYOUT & MAIN APP ---
+const SnowfallCanvas = () => {
+      const canvasRef = React.useRef<HTMLCanvasElement>(null);
+
+      React.useEffect(() => {
+        const canvas = canvasRef.current;
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return;
+
+        const DUST_PARTICLE_COUNT = 250;
+        const MIN_FLAKES = 8;
+        const NUM_TEXTS = 2;
+        const MOUSE_INFLUENCE_RADIUS = 200;
+        const MOUSE_WIND_STRENGTH = 0.02;
+        const MOUSE_SMOOTHING_FACTOR = 0.08;
+        const CLICK_BURST_RADIUS = 150;
+        const CLICK_BURST_STRENGTH = 8;
+        const DAMPING_FACTOR = 0.03;
+        const TURBULENCE_STRENGTH = 0.004;
+        const PARALLAX_FACTOR = 0.05;
+
+        let particles: any[] = [];
+        let mouse = { 
+            x: null as number | null, y: null as number | null, 
+            lastX: 0, lastY: 0, 
+            vx: 0, vy: 0,
+            smoothVx: 0, smoothVy: 0
+        };
+        let animationFrameId: number;
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        function createParticle(options: any = {}) {
+            const depth = options.depth !== undefined ? options.depth : Math.random();
+            const type = options.type || 'dust';
+            const baseSpeedY = (depth * 0.4 + 0.1);
+            const baseSpeedX = (Math.random() - 0.5) * 0.1;
+            return {
+                type: type, x: Math.random() * canvas.width, y: Math.random() * canvas.height,
+                depth: depth, vx: baseSpeedX, vy: baseSpeedY,
+                baseSpeedX: baseSpeedX, baseSpeedY: baseSpeedY,
+                size: (type === 'text') ? (depth * 10 + 8) : 
+                      (type === 'flake') ? (depth * 12 + 8) : (depth * 1.2 + 0.5),
+                opacity: depth * 0.7 + 0.3, text: 'SUDY AI', char: '❄',
+                rotation: Math.random() * Math.PI * 2,
+                rotationSpeed: (Math.random() - 0.5) * 0.02,
+            };
+        }
+
+        function initializeScene() {
+            particles = [];
+            for (let i = 0; i < DUST_PARTICLE_COUNT; i++) particles.push(createParticle({ type: 'dust' }));
+            for (let i = 0; i < MIN_FLAKES; i++) particles.push(createParticle({ type: 'flake' }));
+            for (let i = 0; i < NUM_TEXTS; i++) particles.push(createParticle({ type: 'text' }));
+        }
+        
+        const handleResize = () => { resizeCanvas(); initializeScene(); };
+
+        const handleMouseMove = (e: MouseEvent) => {
+            if (mouse.x === null) { mouse.lastX = e.clientX; mouse.lastY = e.clientY; }
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+        };
+
+        const handleMouseDown = (e: MouseEvent) => {
+            for (const p of particles) {
+                const dx = p.x - e.clientX;
+                const dy = p.y - e.clientY;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (distance < CLICK_BURST_RADIUS) {
+                    const force = (1 - distance / CLICK_BURST_RADIUS) * CLICK_BURST_STRENGTH;
+                    p.vx += (dx / distance) * force * (1 + Math.random() * 0.5);
+                    p.vy += (dy / distance) * force * (1 + Math.random() * 0.5);
+                }
+            }
+        };
+
+        const handleMouseOut = () => { mouse.x = null; mouse.y = null; };
+
+        window.addEventListener('resize', handleResize);
+        window.addEventListener('mousemove', handleMouseMove);
+        window.addEventListener('mousedown', handleMouseDown);
+        window.addEventListener('mouseout', handleMouseOut);
+
+        function update() {
+            let rawVx = 0, rawVy = 0;
+            if (mouse.x !== null && mouse.y !== null) {
+                rawVx = mouse.x - mouse.lastX;
+                rawVy = mouse.y - mouse.lastY;
+                mouse.lastX = mouse.x;
+                mouse.lastY = mouse.y;
+            }
+            mouse.smoothVx += (rawVx - mouse.smoothVx) * MOUSE_SMOOTHING_FACTOR;
+            mouse.smoothVy += (rawVy - mouse.smoothVy) * MOUSE_SMOOTHING_FACTOR;
+
+            for (const p of particles) {
+                let accX = 0, accY = 0;
+                if (mouse.x !== null && mouse.y !== null) {
+                    const dx = p.x - mouse.x;
+                    const dy = p.y - mouse.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    if (distance < MOUSE_INFLUENCE_RADIUS) {
+                        const influence = (1 - distance / MOUSE_INFLUENCE_RADIUS);
+                        accX += mouse.smoothVx * MOUSE_WIND_STRENGTH * influence;
+                        accY += mouse.smoothVy * MOUSE_WIND_STRENGTH * influence;
+                    }
+                }
+                
+                accX += (Math.random() - 0.5) * TURBULENCE_STRENGTH;
+                accY += (Math.random() - 0.5) * TURBULENCE_STRENGTH;
+                
+                p.vx += accX;
+                p.vy += accY;
+                p.vx -= (p.vx - p.baseSpeedX) * DAMPING_FACTOR;
+                p.vy -= (p.vy - p.baseSpeedY) * DAMPING_FACTOR;
+                
+                p.x += p.vx;
+                p.y += p.vy;
+                if (p.type !== 'dust') p.rotation += p.rotationSpeed;
+
+                if (p.y > canvas.height + p.size) {
+                    p.y = -p.size; p.x = Math.random() * canvas.width;
+                    p.vx = p.baseSpeedX; p.vy = p.baseSpeedY;
+                }
+                if (p.x > canvas.width + p.size) p.x = -p.size;
+                else if (p.x < -p.size) p.x = canvas.width + p.size;
+            }
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            const centerX = canvas.width / 2, centerY = canvas.height / 2;
+            const parallaxX = mouse.x ? (mouse.x - centerX) * PARALLAX_FACTOR : 0;
+            const parallaxY = mouse.y ? (mouse.y - centerY) * PARALLAX_FACTOR : 0;
+
+            for (const p of particles) {
+                const drawX = p.x + parallaxX * p.depth, drawY = p.y + parallaxY * p.depth;
+                ctx.fillStyle = `rgba(255, 255, 255, ${p.opacity})`;
+                switch (p.type) {
+                    case 'dust':
+                        ctx.beginPath(); ctx.arc(drawX, drawY, p.size, 0, Math.PI * 2); ctx.fill();
+                        break;
+                    case 'flake': case 'text':
+                        ctx.save(); ctx.translate(drawX, drawY); ctx.rotate(p.rotation);
+                        const fontSize = p.type === 'text' ? 'bold' : '';
+                        ctx.font = `${fontSize} ${p.size}px 'Helvetica Neue', Arial`;
+                        const content = p.type === 'text' ? p.text : p.char;
+                        ctx.fillText(content, -ctx.measureText(content).width / 2, p.size / 2);
+                        ctx.restore();
+                        break;
+                }
+            }
+        }
+        
+        function animationLoop() { 
+          update(); 
+          draw(); 
+          animationFrameId = requestAnimationFrame(animationLoop); 
+        }
+
+        resizeCanvas(); 
+        initializeScene(); 
+        animationLoop();
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+            window.removeEventListener('mousemove', handleMouseMove);
+            window.removeEventListener('mousedown', handleMouseDown);
+            window.removeEventListener('mouseout', handleMouseOut);
+            cancelAnimationFrame(animationFrameId);
+        };
+      }, []);
+
+      return <canvas ref={canvasRef} style={{ position: 'fixed', top: 0, left: 0, pointerEvents: 'none', zIndex: 49 }} />;
+    };
 
 const MobileMenu: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isOpen, onClose }) => {
     const { t, language, setLanguage, isAuthenticated, logout } = useAppContext();
@@ -1288,7 +1467,8 @@ const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     
     return (
-        <div className="bg-[#0a0a0a] text-white min-h-screen">
+        <div className="text-white min-h-screen">
+            <SnowfallCanvas />
             <header className="fixed top-0 left-0 md:left-20 right-0 h-20 sm:h-24 flex items-center justify-between px-4 sm:px-8 z-40 bg-gradient-to-b from-black/70 to-transparent">
                  <Link to="/" className="flex items-center gap-2 sm:gap-6 group">
                     <img src="https://i.postimg.cc/65170K31/logo-white.png" alt="SUDY FILM STUDIO Logo" className="h-12 sm:h-20 group-hover:opacity-90 transition-opacity duration-300" />
