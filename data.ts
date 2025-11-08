@@ -203,19 +203,24 @@ Lýnh cùng những người sống sót di cư đến Đảo Xám hoang tàn. T
   {
     id: 'tvc-beckent-beer',
     en: {
-      title: 'Beckent Beer: The Golden Hour',
+      title: 'Beckent Beer: A Royal Brew',
       category: 'TVC',
-      description: 'A dynamic and vibrant TVC celebrating friendship and unforgettable moments, all brought together by the crisp taste of Beckent Beer.',
-      pitch: 'This high-energy TVC captures the spirit of modern celebration. Through quick cuts, stunning visuals, and a catchy soundtrack, we follow a group of friends as they turn an ordinary evening into an epic memory, with Beckent Beer at the heart of their connection.'
+      description: 'In the fantasy village of Beckent, a beer maiden—secretly the royal brewer\'s daughter—falls for a humble musician. When her exceptional beer diffuses a tense diplomatic meeting, it sparks a kingdom-wide celebration, making Beckent a symbol of unity and joy. Produced in 2024.',
+      pitch: 'This TVC tells a charming fairy-tale romance set in the mythical village of Beckent. The story begins at a barley market where a beer maiden and a musician meet. It culminates in a moment of high-stakes diplomacy, where the maiden\'s brew not only wins hearts but also brings peace to the kingdom, cementing Beckent beer as a legendary symbol of harmony and celebration.'
     },
     vi: {
-      title: 'TVC bia Beckent: Khoảnh Khắc Vàng',
+      title: 'Bia Beckent: Men Say Hoàng Gia',
       category: 'TVC',
-      description: 'Một TVC năng động và đầy sức sống, tôn vinh tình bạn và những khoảnh khắc khó quên, tất cả được gắn kết bởi hương vị sảng khoái của Bia Beckent.',
-      pitch: 'TVC tràn đầy năng lượng này nắm bắt tinh thần của sự kỷ niệm hiện đại. Qua những lát cắt nhanh, hình ảnh tuyệt đẹp và nhạc nền bắt tai, chúng ta theo chân một nhóm bạn biến một buổi tối bình thường thành một kỷ niệm hoành tráng, với Bia Beckent là trung tâm của sự kết nối.'
+      description: 'Tại ngôi làng giả tưởng Beckent, một cô gái rót bia—cũng là con gái của chủ xưởng bia hoàng gia—đã phải lòng một chàng nhạc công. Khi loại bia đặc biệt của cô hóa giải căng thẳng trong một buổi ngoại giao, nó đã bắt đầu một lễ ăn mừng khắp vương quốc, biến Beckent thành biểu tượng của sự đoàn kết và niềm vui. Sản xuất năm 2024.',
+      pitch: 'TVC kể một câu chuyện tình lãng mạn như cổ tích tại ngôi làng huyền thoại Beckent. Chuyện phim bắt đầu tại khu chợ lúa mạch nơi cô gái rót bia và chàng nhạc công gặp gỡ. Câu chuyện lên đến đỉnh điểm trong một khoảnh khắc ngoại giao quan trọng, nơi men bia của cô không chỉ chinh phục trái tim mà còn mang lại hòa bình cho vương quốc, khẳng định bia Beckent là biểu tượng huyền thoại của sự hòa hợp và ăn mừng.'
     },
-    thumbnailUrl: 'https://picsum.photos/seed/beer-celebration/800/600',
-    images: ['https://picsum.photos/seed/beer-friends/1280/720'],
+    thumbnailUrl: 'https://i.postimg.cc/8PVVfJKG/bia-beckent.png',
+    images: [
+        'https://i.postimg.cc/g0hDhJBW/scene-tvc.png',
+        'https://i.postimg.cc/qvPcprM7/scene-tvc-2.png',
+        'https://i.postimg.cc/GhpxQz5R/scene-tvc-3.png'
+    ],
+    vimeoId: '1133084574',
   },
   {
     id: 'tvc-miss-ocean-island',
